@@ -1,28 +1,101 @@
 body {
+  margin: 0;
   font-family: Arial;
-  text-align: center;
-  background: #111;
   color: white;
-  margin-top: 50px;
+  overflow-x: hidden;
 }
 
-button {
-  background: #4CAF50;
-  border: none;
-  padding: 12px 20px;
-  margin: 10px;
+/* фон */
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #1a1a1a, #000);
+  z-index: -1;
+}
+
+/* верхняя панель */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  align-items: center;
+}
+
+.logo {
+  letter-spacing: 3px;
+  animation: glow 2s infinite alternate;
+}
+
+nav a {
   color: white;
-  font-size: 16px;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: orange;
+}
+
+/* главный блок */
+.hero {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80vh;
+  padding: 20px;
+}
+
+/* текст */
+.text h2 {
+  font-size: 40px;
+  animation: fadeIn 2s ease;
+}
+
+.text p {
+  opacity: 0.8;
+  animation: fadeIn 3s ease;
+}
+
+/* кнопка */
+button {
+  margin-top: 20px;
+  padding: 15px 25px;
+  border: none;
   border-radius: 10px;
+  background: orange;
+  color: black;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #45a049;
+  transform: scale(1.1);
+  background: #ff8800;
 }
 
-img {
-  width: 300px;
-  border-radius: 15px;
-  margin-top: 20px;
+/* картинка */
+.hero-img {
+  width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px black;
+  animation: float 4s infinite ease-in-out;
+}
+
+/* анимации */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes float {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(-10px);}
+  100% {transform: translateY(0);}
+}
+
+@keyframes glow {
+  from {text-shadow: 0 0 5px orange;}
+  to {text-shadow: 0 0 20px orange;}
 }
