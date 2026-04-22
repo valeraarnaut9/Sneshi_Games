@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import time
-import threading
 import re
 
 app = Flask(__name__)
@@ -12,19 +11,18 @@ CORS(app)
 API_KEY = "fff34312ggd3"
 CLIENT_ID = "cuuagwn6h9m0wogvkoa657vjdd3oux"
 CLIENT_SECRET = "l7hj93nzx34gfb76j4h2gq16nzi9wj"
-
 TARGET_USER = "deepins02"
 
-# Хранилище сообщений
-chat_messages = []
+# Хранилище реальных сообщений
+real_messages = []
 access_token = None
 token_expiry = 0
+broadcaster_id = None
 
-# ===== ПОЛУЧЕНИЕ ТОКЕНА TWITCH =====
-def get_twitch_token():
+# ===== ПОЛУЧЕНИЕ ТОКЕНА =====
+def get_token():
     global access_token, token_expiry
     
-    # Если токен еще живет (55 минут), используем его
     if access_token and time.time() < token_expiry:
         return access_token
     
@@ -40,23 +38,25 @@ def get_twitch_token():
         if response.status_code == 200:
             data = response.json()
             access_token = data["access_token"]
-            token_expiry = time.time() + data["expires_in"] - 300  # 5 минут запас
-            print(f"[TOKEN] Получен новый токен")
+            token_expiry = time.time() + data["expires_in"] - 300
+            print(f"✅ Токен получен")
             return access_token
-        else:
-            print(f"[TOKEN] Ошибка: {response.status_code}")
-            return None
     except Exception as e:
-        print(f"[TOKEN] Ошибка: {e}")
-        return None
+        print(f"❌ Ошибка токена: {e}")
+    return None
 
-# ===== ПОЛУЧЕНИЕ ID ПОЛЬЗОВАТЕЛЯ =====
-def get_user_id(username):
-    token = get_twitch_token()
+# ===== ПОЛУЧЕНИЕ ID СТРИМЕРА =====
+def get_user_id():
+    global broadcaster_id
+    
+    if broadcaster_id:
+        return broadcaster_id
+    
+    token = get_token()
     if not token:
         return None
     
-    url = f"https://api.twitch.tv/helix/users?login={username}"
+    url = f"https://api.twitch.tv/helix/users?login={TARGET_USER}"
     headers = {
         "Client-ID": CLIENT_ID,
         "Authorization": f"Bearer {token}"
@@ -65,72 +65,16 @@ def get_user_id(username):
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200 and response.json()["data"]:
-            return response.json()["data"][0]["id"]
+            broadcaster_id = response.json()["data"][0]["id"]
+            print(f"✅ ID {TARGET_USER}: {broadcaster_id}")
+            return broadcaster_id
     except Exception as e:
-        print(f"[USER ID] Ошибка: {e}")
+        print(f"❌ Ошибка ID: {e}")
     return None
 
-# ===== ПОЛУЧЕНИЕ СООБЩЕНИЙ ЧЕРЕЗ API (РАБОЧИЙ СПОСОБ) =====
-def fetch_chat_messages():
-    """Получает сообщения из чата через Twitch API"""
-    user_id = get_user_id(TARGET_USER)
-    if not user_id:
-        print(f"[CHAT] Не удалось получить ID пользователя {TARGET_USER}")
-        return []
-    
-    token = get_twitch_token()
-    if not token:
-        return []
-    
-    # Пытаемся получить чат через Helix (требует OAuth)
-    url = f"https://api.twitch.tv/helix/chat/emotes?broadcaster_id={user_id}"
-    headers = {
-        "Client-ID": CLIENT_ID,
-        "Authorization": f"Bearer {token}"
-    }
-    
-    try:
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            print(f"[CHAT] Успешное подключение к чату")
-        else:
-            print(f"[CHAT] Статус: {response.status_code}")
-    except Exception as e:
-        print(f"[CHAT] Ошибка: {e}")
-    
-    return []
-
-# ===== ТЕСТОВЫЕ СООБЩЕНИЯ (ДЛЯ ТЕСТА, ПОКА НЕТ РЕАЛЬНОГО ЧАТА) =====
-# Здесь сообщения, которые часто пишут (цифры и короткие)
-TEST_MESSAGES = [
-    "0", "1", "2", "3", "4", "5", "0", "0", "1", "2", "0",
-    "привет", "0", "ok", "1", "lol", "0", "gg", "2", "0",
-    "hi", "0", "hey", "1", "0", "0", "3", "4", "0"
-]
-message_index = 0
-
-def get_next_test_message():
-    global message_index
-    msg = TEST_MESSAGES[message_index % len(TEST_MESSAGES)]
-    message_index += 1
-    return msg
-
-# ===== FLASK ЭНДПОИНТЫ =====
-
-@app.route("/", methods=["GET"])
-def home():
-    key = request.args.get("key")
-    if key == API_KEY:
-        return jsonify({
-            "status": "running",
-            "message": "Сервер отслеживает чат deepins02",
-            "endpoints": [
-                "/get_latest_message?key=KEY",
-                "/get_all_messages?key=KEY",
-                "/ping?key=KEY"
-            ]
-        })
-    return "NO ACCESS"
+# ===== ПОЛУЧЕНИЕ СООБЩЕНИЙ ЧЕРЕЗ CHAT BADGES (единственное, что доступно без OAuth пользователя) =====
+# ВНИМАНИЕ: Twitch API не дает читать сообщения чата без подключения к IRC или WebSocket
+# Этот метод возвращает только бейджики, а не текст сообщений
 
 @app.route("/get_latest_message", methods=["GET"])
 def get_latest_message():
@@ -138,33 +82,15 @@ def get_latest_message():
     if key != API_KEY:
         return jsonify({"error": "NO ACCESS"}), 403
     
-    # ПОКА ТЕСТ - возвращаем случайное сообщение (цифры и короткие)
-    # Когда настроите реальный чат - замените на реальные сообщения
-    message = get_next_test_message()
+    # ПЫТАЕМСЯ ПОЛУЧИТЬ РЕАЛЬНЫЕ СООБЩЕНИЯ
+    # НО Twitch API НЕ ПОЗВОЛЯЕТ читать чат через HTTP!
+    # Поэтому возвращаем заглушку с объяснением
     
     return jsonify({
-        "success": True,
-        "message": message,
-        "username": TARGET_USER,
-        "length": len(message)
-    })
-
-@app.route("/get_all_messages", methods=["GET"])
-def get_all_messages():
-    key = request.args.get("key")
-    if key != API_KEY:
-        return jsonify({"error": "NO ACCESS"}), 403
-    
-    # Генерируем последние 10 сообщений для теста
-    recent_messages = []
-    for i in range(10):
-        recent_messages.append(get_next_test_message())
-    
-    return jsonify({
-        "success": True,
-        "messages": recent_messages,
-        "streamer": TARGET_USER,
-        "count": len(recent_messages)
+        "success": False,
+        "message": "?",
+        "error": "Twitch API не позволяет читать чат через HTTP. Нужен IRC или WebSocket.",
+        "solution": "Используйте альтернативный сервер с поддержкой IRC (не Render.com)"
     })
 
 @app.route("/ping", methods=["GET"])
@@ -175,28 +101,33 @@ def ping():
     
     return jsonify({
         "status": "ok",
-        "connected": True,
-        "streamer": TARGET_USER,
-        "message_count": message_index
+        "note": "Для чтения чата нужен сервер с поддержкой WebSocket/IRC",
+        "render_com_blocks_ports": True
     })
 
-@app.route("/get_token_status", methods=["GET"])
-def get_token_status():
+@app.route("/", methods=["GET"])
+def home():
     key = request.args.get("key")
-    if key != API_KEY:
-        return jsonify({"error": "NO ACCESS"}), 403
-    
-    token = get_twitch_token()
-    return jsonify({
-        "has_token": token is not None,
-        "token_valid": time.time() < token_expiry if token else False
-    })
+    if key == API_KEY:
+        return jsonify({
+            "status": "running",
+            "warning": "Twitch API не позволяет читать сообщения чата через HTTP",
+            "solution": "Используйте IRC или WebSocket (Render.com не подходит)"
+        })
+    return "NO ACCESS"
 
 if __name__ == "__main__":
     print("=" * 50)
-    print("СЕРВЕР ЗАПУЩЕН")
-    print(f"API_KEY: {API_KEY}")
-    print(f"Следим за стримером: {TARGET_USER}")
-    print(f"Client ID: {CLIENT_ID[:10]}...")
+    print("⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ:")
+    print("Twitch API НЕ позволяет читать сообщения чата")
+    print("через обычные HTTP запросы.")
+    print("")
+    print("Для чтения чата нужно:")
+    print("1. IRC подключение (порт 6667)")
+    print("2. WebSocket подключение")
+    print("3. Сторонний сервис")
+    print("")
+    print("Render.com НЕ поддерживает эти протоколы")
+    print("на бесплатном тарифе.")
     print("=" * 50)
     app.run(host="0.0.0.0", port=5000)
