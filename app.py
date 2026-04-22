@@ -11,9 +11,9 @@ app = Flask(__name__)
 CORS(app)
 
 # ===== НАСТРОЙКИ =====
-API_KEY = "ВАШ_ЛОКАЛЬНЫЙ_КЛЮЧ"  # Замените на свой ключ
-CLIENT_ID = "cuuagwn6h9m0wogvkoa657vjdd3..."  # Ваш Client ID
-CLIENT_SECRET = "ВАШ_SECRET_КЛЮЧ"
+API_KEY = "fff34312ggd3"  # Замените на свой ключ
+CLIENT_ID = "cuuagwn6h9m0wogvkoa657vjdd3oux"  # Ваш Client ID
+CLIENT_SECRET = "l7hj93nzx34gfb76j4h2gq16nzi9wj"
 
 # Настройки для IRC
 TARGET_USER = "deepins02"  # Стример за которым следим
