@@ -2,22 +2,45 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Мой сайт</title>
+  <title>My Horror Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>Привет 👋</h1>
-  <p>Это мой сайт на GitHub Pages</p>
+  <!-- фон -->
+  <div class="background"></div>
 
-  <button onclick="alert('Ты нажал кнопку 1')">Кнопка 1</button>
-  <button onclick="alert('Кнопка 2 работает')">Кнопка 2</button>
+  <!-- верхняя панель -->
+  <header>
+    <h1 class="logo">MY GAME</h1>
 
-  <br><br>
+    <nav>
+      <a href="#">Главная</a>
+      <a href="#">Об игре</a>
+      <a href="#">Обновления</a>
+      <a href="#">Контакты</a>
+    </nav>
+  </header>
 
-  <img src="<a href="https://ibb.co/SDGNW63n"><img src="https://i.ibb.co/CpDBNwH7/Screenshot-20260422-021430.jpg" alt="Screenshot-20260422-021430" border="0"></a>" alt="картинка">
+  <!-- главный блок -->
+  <section class="hero">
 
-  <script src="script.js"></script>
+    <div class="text">
+      <h2>Добро пожаловать</h2>
+      <p>Исследуй тёмный мир, полный опасностей...</p>
+
+      <button onclick="alert('Игра скоро выйдет!')">
+        Играть
+      </button>
+    </div>
+
+    <!-- ТВОЯ КАРТИНКА -->
+    <img class="hero-img"
+      src="https://i.ibb.co/CpDBNwH7/Screenshot-20260422-021430.jpg"
+      alt="game">
+
+  </section>
+
 </body>
 </html>
