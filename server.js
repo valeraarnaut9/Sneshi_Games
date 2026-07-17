@@ -1,8 +1,17 @@
 const express = require("express");
+const path = require("path");
 const { createClient } = require("@supabase/supabase-js");
 
-
 const app = express();
+
+
+// EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+
+// CSS, изображения и другие файлы
+app.use(express.static(path.join(__dirname, "public")));
 
 
 const supabase = createClient(
@@ -11,30 +20,72 @@ const supabase = createClient(
 );
 
 
-
-app.get("/", (req,res)=>{
+// Главная
+app.get("/", (req, res) => {
     res.send("Server online");
 });
 
 
-
-app.get("/users/:userid", async (req,res)=>{
-
+// Профиль пользователя
+app.get("/users/:userid", async (req, res) => {
 
     const userid = req.params.userid;
 
 
-    const {data,error} = await supabase
+    const { data, error } = await supabase
         .from("users")
-        .select("userid, username, created_at")
+        .select("userid, username")
         .eq("userid", userid)
         .single();
 
 
 
-    if(error){
+    if (error || !data) {
 
-        return res.status(404).json({
+        return res.status(404).send("User not found");
+
+    }
+
+
+
+    const avatarPath =
+        `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${userid}.webp`;
+
+
+
+    const defaultAvatar =
+        "https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/default-avatar/default_avatar.webp";
+
+
+
+    res.render("profile", {
+
+        username: data.username,
+
+        userid: data.userid,
+
+        avatar: avatarPath,
+
+        defaultAvatar: defaultAvatar
+
+    });
+
+
+});
+
+
+
+const PORT = process.env.PORT || 3000;
+
+
+app.listen(PORT, () => {
+
+    console.log(
+        "Server started:",
+        PORT
+    );
+
+});        return res.status(404).json({
             error:"User not found"
         });
 
