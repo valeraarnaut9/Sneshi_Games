@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>@<%= username %></title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="profile-card">
+
+        <img 
+            class="avatar"
+            src="<%= avatar %>"
+            onerror="this.src='<%= defaultAvatar %>'"
+        >
+
+        <h1>
+            @<%= username %>
+        </h1>
+
+    </div>
+
+
+</body>
+</html>
