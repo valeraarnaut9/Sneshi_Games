@@ -1,67 +1,39 @@
-* {
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@<%= username %></title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
 
 
-body {
-    margin: 0;
+<body>
 
-    min-height: 100vh;
+    <div class="profile-card">
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        <img
+            class="avatar"
+            src="<%= avatar %>"
+            onerror="this.src='<%= defaultAvatar %>'"
+        >
 
-    background: #1b202b;
+        <h1 class="display-name">
+            <%= display_name %>
+        </h1>
 
-    font-family: Arial, sans-serif;
+        <p class="username">
+            @<%= username %>
+        </p>
 
-    color: white;
-}
+    </div>
 
+</body>
 
-
-.profile-card {
-
-    width: 320px;
-
-    padding: 35px;
-
-    background: #252c3a;
-
-    border-radius: 20px;
-
-    text-align: center;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-
-}
-
-
-
-.avatar {
-
-    width: 150px;
-    height: 150px;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-
-    display: block;
-
-    margin: 0 auto;
-
-}
-
-
-
-h1 {
-
-    margin-top: 20px;
-
-    text-align: center;
-
-    font-size: 28px;
-
-}
+</html>
