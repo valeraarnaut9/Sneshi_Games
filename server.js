@@ -33,10 +33,10 @@ app.get("/users/:userid", async (req, res) => {
 
 
     const { data, error } = await supabase
-        .from("users")
-        .select("userid, username")
-        .eq("userid", userid)
-        .single();
+    .from("users")
+    .select("userid, username, display_name")
+    .eq("userid", userid)
+    .single();
 
 
 
