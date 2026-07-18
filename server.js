@@ -33,10 +33,10 @@ app.get("/users/:userid", async (req, res) => {
 
 
     const { data, error } = await supabase
-    .from("users")
-    .select("userid, username, display_name")
-    .eq("userid", userid)
-    .single();
+        .from("users")
+        .select("userid, username, display_name, bio")
+        .eq("userid", userid)
+        .single();
 
 
 
@@ -57,17 +57,19 @@ app.get("/users/:userid", async (req, res) => {
 
     res.render("profile", {
 
-    username: data.username,
+        username: data.username,
 
-    display_name: data.display_name,
+        display_name: data.display_name,
 
-    userid: data.userid,
+        bio: data.bio,
 
-    avatar: avatarPath,
+        userid: data.userid,
 
-    defaultAvatar: defaultAvatar
+        avatar: avatarPath,
 
-});
+        defaultAvatar: defaultAvatar
+
+    });
 
 });
 
