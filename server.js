@@ -57,15 +57,17 @@ app.get("/users/:userid", async (req, res) => {
 
     res.render("profile", {
 
-        username: data.username,
+    username: data.username,
 
-        userid: data.userid,
+    display_name: data.display_name,
 
-        avatar: avatarPath,
+    userid: data.userid,
 
-        defaultAvatar: defaultAvatar
+    avatar: avatarPath,
 
-    });
+    defaultAvatar: defaultAvatar
+
+});
 
 });
 
