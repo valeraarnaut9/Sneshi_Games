@@ -18,21 +18,34 @@
 
     <div class="profile-card">
 
+
         <img
             class="avatar"
             src="<%= avatar %>"
             onerror="this.src='<%= defaultAvatar %>'"
         >
 
+
+
         <h1 class="display-name">
-            <%= display_name || username %>
+            <%= display_name %>
         </h1>
+
+
 
         <p class="username">
             @<%= username %>
         </p>
 
+
+
+        <p class="bio">
+            <%= bio %>
+        </p>
+
+
     </div>
+
 
 </body>
 
