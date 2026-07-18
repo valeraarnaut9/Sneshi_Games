@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 
-// CSS, изображения и другие файлы
+// Public файлы
 app.use(express.static(path.join(__dirname, "public")));
 
 
@@ -41,16 +41,13 @@ app.get("/users/:userid", async (req, res) => {
 
 
     if (error || !data) {
-
         return res.status(404).send("User not found");
-
     }
 
 
 
     const avatarPath =
         `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${userid}.webp`;
-
 
 
     const defaultAvatar =
@@ -70,7 +67,6 @@ app.get("/users/:userid", async (req, res) => {
 
     });
 
-
 });
 
 
@@ -85,26 +81,4 @@ app.listen(PORT, () => {
         PORT
     );
 
-});        return res.status(404).json({
-            error:"User not found"
-        });
-
-    }
-
-
-    res.json(data);
-
-
-});
-
-
-
-const PORT = process.env.PORT || 3000;
-
-
-app.listen(PORT,()=>{
-    console.log(
-        "Server started:",
-        PORT
-    );
 });
