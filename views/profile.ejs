@@ -1,38 +1,105 @@
-<!DOCTYPE html>
-<html lang="ru">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-<head>
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
 
-    <meta charset="UTF-8">
+body {
+    min-height: 100vh;
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    <title>@<%= username %></title>
+    background: #161b22;
 
-    <link rel="stylesheet" href="/css/style.css">
+    font-family: Arial, Helvetica, sans-serif;
 
-</head>
+    color: white;
+}
 
-<body>
+.profile-card {
+    width: 360px;
+    max-width: 90vw;
 
-    <div class="profile-card">
+    background: #21262d;
 
-        <img
-            class="avatar"
-            src="<%= avatar %>"
-            onerror="this.src='<%= defaultAvatar %>'"
-        >
+    border-radius: 18px;
 
-        <h1 class="display-name">
-            <%= display_name %>
-        </h1>
+    padding: 40px 30px;
 
-        <p class="username">
-            @<%= username %>
-        </p>
+    text-align: center;
 
-    </div>
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
 
-</body>
+.avatar {
+    width: 160px;
+    height: 160px;
 
-</html>
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto;
+
+    border: 4px solid #3b82f6;
+}
+
+.display-name {
+    margin-top: 22px;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.username {
+    margin-top: 8px;
+
+    font-size: 18px;
+
+    color: #8b949e;
+}
+
+@media (max-width: 500px) {
+
+    .profile-card {
+
+        width: 92vw;
+
+        padding: 30px 20px;
+
+    }
+
+    .avatar {
+
+        width: 140px;
+        height: 140px;
+
+    }
+
+    .display-name {
+
+        font-size: 28px;
+
+    }
+
+    .username {
+
+        font-size: 17px;
+
+    }
+
+}
