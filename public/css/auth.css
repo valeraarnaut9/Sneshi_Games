@@ -246,4 +246,55 @@ button:active {
 
     }
 
+    .notification {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #da3633;
+
+    color: white;
+
+    padding: 14px 25px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+    z-index: 999;
+
+    animation: showNotification .3s ease;
+
 }
+
+
+@keyframes showNotification {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+        translate(-50%, -20px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+        translate(-50%, 0);
+
+    }
+
+}
+
