@@ -30,7 +30,19 @@
 
 setTimeout(() => {
 
-    document.querySelector(".notification").style.display = "none";
+    const notification = document.querySelector(".notification");
+
+    if(notification){
+
+        notification.style.opacity = "0";
+
+        setTimeout(() => {
+
+            notification.style.display = "none";
+
+        }, 300);
+
+    }
 
 }, 5000);
 
@@ -40,63 +52,72 @@ setTimeout(() => {
 <% } %>
 
 
-<% if (error) { %>
-
-<div class="notification">
-
-    <%= error %>
-
-</div>
-
-<% } %>
-
 
 
 <div class="auth-card">
 
 
 <h1 class="logo">
+
 Empty Account
+
 </h1>
 
 
 
 <h2>
+
 Sign In
+
 </h2>
+
 
 
 
 <form action="/signin" method="POST">
 
 
-
 <label>
+
 Username
+
 </label>
 
 
 <input
+
 type="text"
+
 name="username"
+
 placeholder="Enter username"
+
 required
+
 >
 
 
 
 
 <label>
+
 Password
+
 </label>
 
 
 <input
+
 type="password"
+
 name="password"
+
 placeholder="Enter password"
+
 required
+
 >
+
 
 
 
@@ -107,14 +128,13 @@ Sign In
 </button>
 
 
-
 </form>
 
 
 
 
-<p class="bottom-text">
 
+<p class="bottom-text">
 
 Don't have an account?
 
