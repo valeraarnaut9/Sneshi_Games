@@ -495,23 +495,25 @@ app.get("/users/:userid", async (req,res)=>{
 
 
 
-    res.render("profile",{
+res.render("profile",{
 
 
-        username:data.username,
+    username:data.username,
 
-        display_name:data.display_name,
+    display_name:data.display_name,
 
-        bio:data.bio,
+    bio:data.bio,
 
-        userid:data.userid,
+    userid:data.userid,
 
-        avatar:avatarPath,
+    avatar:avatarPath,
 
-        defaultAvatar
+    defaultAvatar,
+
+    currentUser: req.user || null
 
 
-    });
+});
 
 
 
