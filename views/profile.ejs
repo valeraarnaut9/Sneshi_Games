@@ -16,7 +16,19 @@
 
 <body>
 
-    <div class="profile-card">
+
+<%- include("partials/header", {
+    user: {
+        userid: userid,
+        display_name: display_name,
+        avatar: avatar,
+        defaultAvatar: defaultAvatar
+    }
+}) %>
+
+
+
+<div class="profile-card">
 
 
         <img
