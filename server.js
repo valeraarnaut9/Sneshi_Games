@@ -287,9 +287,11 @@ app.post("/signup", async (req, res) => {
     if (exists) {
 
 
-        return res.send(
-            "Username already exists"
-        );
+        return res.render("signup", {
+
+    error: "Username already exists"
+
+});
 
 
     }
