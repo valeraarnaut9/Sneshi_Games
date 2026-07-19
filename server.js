@@ -3,6 +3,9 @@ const path = require("path");
 const { createClient } = require("@supabase/supabase-js");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+
+const auth = require("./middleware/auth");
 
 
 const app = express();
@@ -19,10 +22,20 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 
-// ---------- Forms ----------
+// ---------- Body ----------
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+
+// ---------- Cookies ----------
+
+app.use(cookieParser());
+
+
+// ---------- Auth ----------
+
+app.use(auth);
 
 
 // ---------- Supabase ----------
@@ -34,13 +47,26 @@ const supabase = createClient(
 
 
 
+
 // ---------- Главная ----------
 
 app.get("/", (req, res) => {
 
+
+    if (req.user) {
+
+        return res.redirect(
+            "/users/" + req.user.userid
+        );
+
+    }
+
+
     res.redirect("/signin");
 
+
 });
+
 
 
 
@@ -48,144 +74,114 @@ app.get("/", (req, res) => {
 
 app.get("/signin", (req, res) => {
 
-    res.render("signin");
+
+    if (req.user) {
+
+        return res.redirect(
+            "/users/" + req.user.userid
+        );
+
+    }
+
+
+    res.render("signin", {
+
+        error: null
+
+    });
+
 
 });
 
 
 
-// ---------- Sign Up ----------
-
-app.get("/signup", (req, res) => {
-
-    res.render("signup");
-
-});
 
 
-
-
-// ---------- Регистрация ----------
-
-app.post("/signup", async (req, res) => {
+app.post("/signin", async (req, res) => {
 
 
     const {
         username,
-        display_name,
         password
     } = req.body;
 
 
 
-    if (!username || !display_name || !password) {
+    if (!username || !password) {
 
-        return res.send("Fill all fields");
+
+        return res.render("signin", {
+
+            error: "Fill all fields"
+
+        });
+
 
     }
 
 
 
-    // Проверка username
 
-    const { data: existingUser } = await supabase
+
+    const { data: user, error } = await supabase
         .from("users")
-        .select("userid")
+        .select(
+            "userid, username, password_hash"
+        )
         .eq("username", username)
         .single();
 
 
 
-    if (existingUser) {
-
-        return res.send("Username already exists");
-
-    }
 
 
+    if (error || !user) {
 
 
-    // Генерация userid
+        return res.render("signin", {
 
-    let userid;
-
-
-    while (true) {
-
-        const randomID =
-            Math.floor(
-                10000 + Math.random() * 90000
-            );
-
-
-        const { data } = await supabase
-            .from("users")
-            .select("userid")
-            .eq("userid", randomID)
-            .single();
-
-
-
-        if (!data) {
-
-            userid = randomID;
-            break;
-
-        }
-
-    }
-
-
-
-
-    // Хеш пароля
-
-    const passwordHash =
-        await bcrypt.hash(password, 10);
-
-
-
-
-
-    // Создание пользователя
-
-    const { error } = await supabase
-        .from("users")
-        .insert({
-
-            userid: userid,
-
-            username: username,
-
-            display_name: display_name,
-
-            bio: "No bio",
-
-            password_hash: passwordHash
+            error: "Incorrect username or password"
 
         });
 
 
-
-    if (error) {
-
-        console.log(error);
-
-        return res.send("Database error");
-
     }
 
 
 
 
-    // Создание сессии
+
+    const passwordCorrect =
+        await bcrypt.compare(
+            password,
+            user.password_hash
+        );
+
+
+
+
+
+    if (!passwordCorrect) {
+
+
+        return res.render("signin", {
+
+            error: "Incorrect username or password"
+
+        });
+
+
+    }
+
+
+
 
 
     const token = uuidv4();
 
 
-    const expires =
-        new Date();
+
+    const expires = new Date();
 
 
     expires.setDate(
@@ -195,21 +191,232 @@ app.post("/signup", async (req, res) => {
 
 
 
+
     await supabase
         .from("sessions")
         .insert({
 
-            userid: userid,
+            userid: user.userid,
 
             token: token,
 
             device: "Unknown",
 
-            ip: "Unknown",
+            ip: req.ip,
 
             expires_at: expires
 
         });
+
+
+
+
+
+
+
+    res.cookie(
+        "session_token",
+        token,
+        {
+
+            httpOnly: true,
+
+            maxAge:
+            30 * 24 * 60 * 60 * 1000
+
+        }
+    );
+
+
+
+
+
+    res.redirect(
+        "/users/" + user.userid
+    );
+
+
+});
+
+
+
+
+
+// ---------- Sign Up ----------
+
+app.get("/signup", (req, res) => {
+
+
+    res.render("signup");
+
+
+});
+
+
+
+
+
+app.post("/signup", async (req, res) => {
+
+
+    const {
+
+        username,
+
+        display_name,
+
+        password
+
+    } = req.body;
+
+
+
+
+
+    const { data: exists } =
+        await supabase
+            .from("users")
+            .select("userid")
+            .eq("username", username)
+            .single();
+
+
+
+
+
+    if (exists) {
+
+
+        return res.send(
+            "Username already exists"
+        );
+
+
+    }
+
+
+
+
+
+    let userid;
+
+
+
+    while(true){
+
+
+        const id =
+            Math.floor(
+                10000 +
+                Math.random() * 90000
+            );
+
+
+
+        const { data } =
+            await supabase
+                .from("users")
+                .select("userid")
+                .eq("userid", id)
+                .single();
+
+
+
+        if(!data){
+
+            userid = id;
+
+            break;
+
+        }
+
+    }
+
+
+
+
+
+    const hash =
+        await bcrypt.hash(
+            password,
+            10
+        );
+
+
+
+
+
+    await supabase
+        .from("users")
+        .insert({
+
+            userid,
+
+            username,
+
+            display_name,
+
+            bio: "No bio",
+
+            password_hash: hash
+
+        });
+
+
+
+
+
+
+    const token = uuidv4();
+
+
+
+    const expires = new Date();
+
+
+
+    expires.setDate(
+        expires.getDate() + 30
+    );
+
+
+
+
+
+    await supabase
+        .from("sessions")
+        .insert({
+
+            userid,
+
+            token,
+
+            device:"Unknown",
+
+            ip:req.ip,
+
+            expires_at:expires
+
+        });
+
+
+
+
+
+    res.cookie(
+        "session_token",
+        token,
+        {
+
+            httpOnly:true,
+
+            maxAge:
+            30 * 24 * 60 * 60 * 1000
+
+        }
+    );
+
+
 
 
 
@@ -224,32 +431,40 @@ app.post("/signup", async (req, res) => {
 
 
 
+
+
 // ---------- Profile ----------
 
-
-app.get("/users/:userid", async (req, res) => {
-
-
-    const userid = req.params.userid;
+app.get("/users/:userid", async (req,res)=>{
 
 
+    const userid =
+        req.params.userid;
 
-    const { data, error } = await supabase
+
+
+
+    const {data,error} =
+        await supabase
         .from("users")
         .select(
             "userid, username, display_name, bio"
         )
-        .eq("userid", userid)
+        .eq("userid",userid)
         .single();
 
 
 
-    if (error || !data) {
 
-        return res.status(404)
-            .send("User not found");
+
+    if(error || !data){
+
+        return res
+        .status(404)
+        .send("User not found");
 
     }
+
 
 
 
@@ -265,26 +480,69 @@ app.get("/users/:userid", async (req, res) => {
 
 
 
-    res.render("profile", {
+
+    res.render("profile",{
 
 
-        username: data.username,
+        username:data.username,
 
-        display_name: data.display_name,
+        display_name:data.display_name,
 
-        bio: data.bio,
+        bio:data.bio,
 
-        userid: data.userid,
+        userid:data.userid,
 
-        avatar: avatarPath,
+        avatar:avatarPath,
 
-        defaultAvatar: defaultAvatar
+        defaultAvatar
 
 
     });
 
 
+
 });
+
+
+
+
+
+// ---------- Logout ----------
+
+app.get("/logout", async(req,res)=>{
+
+
+    const token =
+        req.cookies.session_token;
+
+
+
+    if(token){
+
+
+        await supabase
+            .from("sessions")
+            .delete()
+            .eq("token",token);
+
+
+    }
+
+
+
+
+
+    res.clearCookie(
+        "session_token"
+    );
+
+
+
+    res.redirect("/signin");
+
+
+});
+
 
 
 
@@ -295,11 +553,13 @@ process.env.PORT || 3000;
 
 
 
-app.listen(PORT, () => {
+app.listen(PORT,()=>{
+
 
     console.log(
         "Server started:",
         PORT
     );
+
 
 });
