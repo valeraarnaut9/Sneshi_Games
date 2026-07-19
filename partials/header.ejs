@@ -1,0 +1,65 @@
+<header class="header">
+
+
+    <div class="header-left">
+
+        <a href="/" class="logo">
+            Empty Account
+        </a>
+
+    </div>
+
+
+
+    <% if (user) { %>
+
+    <div class="header-right">
+
+
+        <img 
+        class="header-avatar"
+        src="<%= user.avatar %>"
+        onerror="this.src='<%= user.defaultAvatar %>'"
+        >
+
+
+        <a 
+        class="header-name"
+        href="/users/<%= user.userid %>"
+        >
+            <%= user.display_name %>
+        </a>
+
+
+        <a class="logout" href="/logout">
+            Logout
+        </a>
+
+
+    </div>
+
+
+    <% } else { %>
+
+
+    <div class="header-right">
+
+
+        <a href="/signin">
+            Sign In
+        </a>
+
+
+        <a href="/signup">
+            Sign Up
+        </a>
+
+
+    </div>
+
+
+    <% } %>
+
+
+
+</header>
