@@ -17,7 +17,6 @@
 <body>
 
 
-
 <% if (error) { %>
 
 <div class="notification">
@@ -27,12 +26,13 @@
 </div>
 
 
-
 <script>
 
 setTimeout(() => {
 
-    const notification = document.querySelector(".notification");
+    const notification =
+        document.querySelector(".notification");
+
 
     if(notification){
 
@@ -47,11 +47,11 @@ setTimeout(() => {
 
     }
 
+
 }, 5000);
 
 
 </script>
-
 
 <% } %>
 
