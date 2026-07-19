@@ -17,6 +17,27 @@
 <body>
 
 
+<% if (error) { %>
+
+<div class="notification">
+
+    <%= error %>
+
+</div>
+
+<script>
+
+setTimeout(() => {
+
+    document.querySelector(".notification").style.display = "none";
+
+}, 5000);
+
+</script>
+
+<% } %>
+
+
 <div class="auth-card">
 
 
