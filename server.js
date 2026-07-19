@@ -241,13 +241,25 @@ app.post("/signin", async (req, res) => {
 
 
 
-
 // ---------- Sign Up ----------
 
 app.get("/signup", (req, res) => {
 
 
-    res.render("signup");
+    if (req.user) {
+
+        return res.redirect(
+            "/users/" + req.user.userid
+        );
+
+    }
+
+
+    res.render("signup", {
+
+        error: null
+
+    });
 
 
 });
