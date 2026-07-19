@@ -3,104 +3,100 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sign Up</title>
+<title>Sign Up</title>
 
-    <link rel="stylesheet" href="/css/auth.css">
+<link rel="stylesheet" href="/css/auth.css">
 
 </head>
 
+
 <body>
 
-    <!-- Баннер ошибок (пока скрыт) -->
-    <div class="notification hidden">
 
-        Username is already taken.
-
-    </div>
+<div class="auth-card">
 
 
-    <div class="auth-card">
-
-        <h1 class="logo">
-
-            Empty Account
-
-        </h1>
+<h1 class="logo">
+Empty Account
+</h1>
 
 
-        <h2>
-
-            Sign Up
-
-        </h2>
+<h2>
+Sign Up
+</h2>
 
 
-        <form>
 
-            <label>
-
-                Username
-
-            </label>
-
-            <input
-                type="text"
-                placeholder="Choose a username"
-                autocomplete="username"
-            >
+<form action="/signup" method="POST">
 
 
-            <label>
+<label>
+Username
+</label>
 
-                Display Name
-
-            </label>
-
-            <input
-                type="text"
-                placeholder="Your display name"
-            >
-
-
-            <label>
-
-                Password
-
-            </label>
-
-            <input
-                type="password"
-                placeholder="Create a password"
-                autocomplete="new-password"
-            >
+<input
+type="text"
+name="username"
+placeholder="Choose username"
+required
+>
 
 
-            <button type="submit">
 
-                Create Account
+<label>
+Display Name
+</label>
 
-            </button>
+<input
+type="text"
+name="display_name"
+placeholder="Your name"
+required
+>
 
-        </form>
 
 
-        <p class="bottom-text">
+<label>
+Password
+</label>
 
-            Already have an account?
+<input
+type="password"
+name="password"
+placeholder="Create password"
+required
+>
 
-            <a href="/signin">
 
-                Sign In
 
-            </a>
+<button type="submit">
+Create Account
+</button>
 
-        </p>
 
-    </div>
+</form>
+
+
+
+<p class="bottom-text">
+
+Already have an account?
+
+<a href="/signin">
+Sign In
+</a>
+
+
+</p>
+
+
+
+</div>
+
 
 </body>
 
