@@ -17,11 +17,15 @@
 <body>
 
 
-<div class="notification hidden">
+<% if (error) { %>
 
-Incorrect username or password.
+<div class="notification">
+
+    <%= error %>
 
 </div>
+
+<% } %>
 
 
 
