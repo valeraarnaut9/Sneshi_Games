@@ -17,6 +17,7 @@
 <body>
 
 
+
 <% if (error) { %>
 
 <div class="notification">
@@ -25,81 +26,144 @@
 
 </div>
 
+
+
 <script>
 
 setTimeout(() => {
 
-    document.querySelector(".notification").style.display = "none";
+    const notification = document.querySelector(".notification");
+
+    if(notification){
+
+        notification.style.opacity = "0";
+
+
+        setTimeout(() => {
+
+            notification.style.display = "none";
+
+        }, 300);
+
+    }
 
 }, 5000);
 
+
 </script>
 
+
 <% } %>
+
+
+
 
 
 <div class="auth-card">
 
 
 <h1 class="logo">
+
 Empty Account
+
 </h1>
 
 
+
 <h2>
+
 Sign Up
+
 </h2>
+
 
 
 
 <form action="/signup" method="POST">
 
 
+
 <label>
+
 Username
+
 </label>
 
+
 <input
+
 type="text"
+
 name="username"
+
 placeholder="Choose username"
+
 required
+
 >
 
 
 
+
+
 <label>
+
 Display Name
+
 </label>
 
+
 <input
+
 type="text"
+
 name="display_name"
-placeholder="Your name"
+
+placeholder="Your display name"
+
 required
+
 >
+
+
 
 
 
 <label>
+
 Password
+
 </label>
 
+
 <input
+
 type="password"
+
 name="password"
+
 placeholder="Create password"
+
 required
+
 >
+
+
 
 
 
 <button type="submit">
+
 Create Account
+
 </button>
 
 
+
+
 </form>
+
+
 
 
 
@@ -107,8 +171,11 @@ Create Account
 
 Already have an account?
 
+
 <a href="/signin">
+
 Sign In
+
 </a>
 
 
@@ -117,6 +184,7 @@ Sign In
 
 
 </div>
+
 
 
 </body>
