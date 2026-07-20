@@ -24,12 +24,17 @@
             >
 
 
+
             <a 
             class="header-name"
             href="/users/<%= user.userid %>"
             >
+
                 <%= user.display_name %>
+
             </a>
+
+
 
 
 
@@ -51,23 +56,29 @@
 
 
 
+
+
                 <div class="dropdown" id="menu">
-<div class="dropdown" id="menu">
 
 
-    <a 
-    class="logout-button"
-    href="/logout"
-    onclick="closeMenu()"
-    >
-        Log Out
-    </a>
+                    <a 
+                    class="logout-button"
+                    href="/logout"
+                    onclick="closeMenu()"
+                    >
+
+                        Log Out
+
+                    </a>
 
 
-</div>
+                </div>
+
 
 
             </div>
+
+
 
 
 
@@ -75,9 +86,16 @@
 
 
 
-            <a class="signin-button" href="/signin">
+
+            <a 
+            class="signin-button" 
+            href="/signin"
+            >
+
                 Sign In
+
             </a>
+
 
 
 
@@ -92,7 +110,10 @@
 
 
 
+
+
 <script>
+
 
 function toggleMenu(){
 
@@ -105,6 +126,23 @@ function toggleMenu(){
 
 
 }
+
+
+
+
+
+function closeMenu(){
+
+
+    const menu =
+    document.getElementById("menu");
+
+
+    menu.classList.remove("show");
+
+
+}
+
 
 
 </script>
