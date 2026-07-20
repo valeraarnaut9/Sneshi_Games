@@ -11,55 +11,95 @@
 
 
 
-    <% if (user) { %>
-
     <div class="header-right">
 
 
-        <img 
-        class="header-avatar"
-        src="<%= user.avatar %>"
-        onerror="this.src='<%= user.defaultAvatar %>'"
-        >
+        <% if(user){ %>
 
 
-        <a 
-        class="header-name"
-        href="/users/<%= user.userid %>"
-        >
-            <%= user.display_name %>
-        </a>
+            <img
+            class="header-avatar"
+            src="<%= user.avatar %>"
+            onerror="this.src='<%= user.defaultAvatar %>'"
+            >
 
 
-        <a class="logout" href="/logout">
-            Logout
-        </a>
+            <a 
+            class="header-name"
+            href="/users/<%= user.userid %>"
+            >
+                <%= user.display_name %>
+            </a>
+
+
+
+            <div class="menu-container">
+
+
+                <button 
+                class="menu-button"
+                onclick="toggleMenu()"
+                >
+
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+
+                </button>
+
+
+
+                <div class="dropdown" id="menu">
+
+
+                    <a href="/logout">
+                        Log Out
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+        <% } else { %>
+
+
+
+            <a class="signin-button" href="/signin">
+                Sign In
+            </a>
+
+
+
+        <% } %>
+
 
 
     </div>
-
-
-    <% } else { %>
-
-
-    <div class="header-right">
-
-
-        <a href="/signin">
-            Sign In
-        </a>
-
-
-        <a href="/signup">
-            Sign Up
-        </a>
-
-
-    </div>
-
-
-    <% } %>
-
 
 
 </header>
+
+
+
+<script>
+
+function toggleMenu(){
+
+
+    const menu =
+    document.getElementById("menu");
+
+
+    menu.classList.toggle("show");
+
+
+}
+
+
+</script>
