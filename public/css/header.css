@@ -28,6 +28,7 @@
 
 
 
+
 .logo {
 
     color:white;
@@ -42,6 +43,8 @@
 
 
 
+
+
 .header-right {
 
     display:flex;
@@ -51,6 +54,8 @@
     gap:15px;
 
 }
+
+
 
 
 
@@ -68,6 +73,8 @@
 
 
 
+
+
 .header-name {
 
     color:white;
@@ -78,9 +85,6 @@
 
 
 
-
-
-/* Sign In button */
 
 
 .signin-button {
@@ -103,14 +107,13 @@
 
 
 
-/* Menu */
-
-
 .menu-container {
 
     position:relative;
 
 }
+
+
 
 
 
@@ -140,6 +143,8 @@
 
 
 
+
+
 .menu-button span {
 
     width:25px;
@@ -156,31 +161,31 @@
 
 
 
-/* Dropdown */
-
-
 .dropdown {
 
     position:absolute;
 
     right:0;
 
-    top:45px;
+    top:50px;
 
-    width:130px;
+    width:140px;
 
-    background:#21262d;
+    background:#30363d;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    padding:10px;
+    padding:8px;
 
     display:none;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,.4);
+
+    0 10px 30px rgba(0,0,0,.5);
 
 }
+
+
 
 
 
@@ -192,24 +197,38 @@
 
 
 
+
+
 .dropdown a {
-
-    color:white;
-
-    text-decoration:none;
 
     display:block;
 
-    padding:10px;
+    padding:12px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:bold;
 
 }
 
 
 
+
+
+.logout-button {
+
+    color:#ff6b6b;
+
+}
+
+
+
+
+
 .dropdown a:hover {
 
-    background:#30363d;
-
-    border-radius:8px;
+    background:#484f58;
 
 }
