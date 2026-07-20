@@ -187,58 +187,47 @@
 
 .menu-button {
 
-
     width:42px;
-
 
     height:42px;
 
+    background:#1e293b;
 
-    background:transparent;
-
-
-    border:none;
-
+    border:1px solid #334155;
 
     border-radius:10px;
 
-
     cursor:pointer;
-
 
     display:flex;
 
-
     flex-direction:column;
-
 
     justify-content:center;
 
-
     align-items:center;
-
 
     gap:5px;
 
-
     transition:.2s;
-
 
 }
 
 
 
+.menu-button:hover {
 
+    background:#334155;
 
+}
 
-.menu-button:hover,
 
 
 .menu-button.active {
 
+    background:#475569;
 
-    background:#334155;
-
+    border-color:#64748b;
 
 }
 
