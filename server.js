@@ -46,6 +46,113 @@ const supabase = createClient(
 );
 
 
+function validateUsername(username){
+
+    if(typeof username !== "string"){
+
+        return false;
+
+    }
+
+    if(username.length < 5 || username.length > 15){
+
+        return false;
+
+    }
+
+    if(!/^[a-zA-Z0-9_]+$/.test(username)){
+
+        return false;
+
+    }
+
+    if(username.startsWith("_")){
+
+        return false;
+
+    }
+
+    if(username.endsWith("_")){
+
+        return false;
+
+    }
+
+    if(username.includes("__")){
+
+        return false;
+
+    }
+
+    const letters =
+        username.match(/[a-zA-Z]/g);
+
+    if(!letters || letters.length < 3){
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+
+
+
+function validatePassword(password){
+
+    if(typeof password !== "string"){
+
+        return false;
+
+    }
+
+    if(password.length < 8 || password.length > 25){
+
+        return false;
+
+    }
+
+    const digits =
+        password.match(/[0-9]/g);
+
+    if(!digits || digits.length < 4){
+
+        return false;
+
+    }
+
+    // только цифры запрещаем
+
+    if(/^[0-9]+$/.test(password)){
+
+        return false;
+
+    }
+
+    // простые последовательности
+
+    const badPasswords = [
+
+        "12345678",
+        "123456789",
+        "1234567890",
+        "87654321",
+        "876543210"
+
+    ];
+
+    if(badPasswords.includes(password)){
+
+        return false;
+
+    }
+
+    return true;
+
+}
 
 
 // ---------- Главная ----------
