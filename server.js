@@ -103,13 +103,13 @@ function validateUsername(username){
 
 function validatePassword(password){
 
+
     if(typeof password !== "string"){
 
         return false;
 
     }
 
-    // Длина
 
     if(password.length < 8 || password.length > 25){
 
@@ -117,7 +117,9 @@ function validatePassword(password){
 
     }
 
-    // Хотя бы одна цифра
+
+
+    // должна быть хотя бы одна цифра
 
     if(!/[0-9]/.test(password)){
 
@@ -125,7 +127,10 @@ function validatePassword(password){
 
     }
 
-    // Не допускаем 4 одинаковых символа подряд
+
+
+
+    // одинаковые символы подряд
 
     if(/(.)\1{3,}/.test(password)){
 
@@ -133,10 +138,16 @@ function validatePassword(password){
 
     }
 
+
+
+
     const lower =
     password.toLowerCase();
 
-    // Самые распространённые слабые пароли
+
+
+
+    // популярные слабые пароли
 
     const weakPasswords = [
 
@@ -144,15 +155,13 @@ function validatePassword(password){
         "password123",
         "qwerty",
         "qwerty123",
-        "qwertyui",
-        "admin",
         "admin123",
         "letmein",
-        "welcome",
-        "abc12345",
-        "iloveyou"
+        "welcome"
 
     ];
+
+
 
     if(weakPasswords.includes(lower)){
 
@@ -160,37 +169,40 @@ function validatePassword(password){
 
     }
 
-    // Если пароль состоит только из цифр
 
-    if(/^[0-9]+$/.test(password)){
 
-        const weakNumbers = [
 
-            "12345678",
-            "123456789",
-            "1234567890",
+    // повторяющийся шаблон
+    // 51515151, abababa
 
-            "87654321",
-            "876543210",
+    for(let i = 1; i <= 4; i++){
 
-            "11111111",
-            "22222222",
-            "33333333",
-            "44444444",
-            "55555555",
-            "66666666",
-            "77777777",
-            "88888888",
-            "99999999",
-            "00000000",
 
-            "12121212",
-            "01010101",
-            "987654321"
+        const pattern =
+        password.substring(0,i);
 
-        ];
 
-        if(weakNumbers.includes(password)){
+        let repeated = "";
+
+
+
+        while(repeated.length < password.length){
+
+            repeated += pattern;
+
+        }
+
+
+
+        repeated =
+        repeated.substring(
+            0,
+            password.length
+        );
+
+
+
+        if(repeated === password){
 
             return false;
 
@@ -198,39 +210,49 @@ function validatePassword(password){
 
     }
 
-    // Оценка сложности
-// Если пароль только цифры
-
-if(/^[0-9]+$/.test(password)){
-
-    return true;
-
-}
 
 
-// Для паролей с буквами/символами
-// оставляем проверку сложности
-
-let score = 0;
 
 
-if(/[a-zA-Z]/.test(password)) score++;
+    // последовательности цифр
+
+    const sequences = [
+
+        "12345678",
+        "23456789",
+        "34567890",
+
+        "87654321",
+        "98765432"
+
+    ];
 
 
-if(/[0-9]/.test(password)) score++;
+
+    if(sequences.includes(password)){
+
+        return false;
+
+    }
 
 
-if(/[^a-zA-Z0-9]/.test(password)) score++;
 
 
-if(password.length >= 12) score++;
+
+    // последовательность букв
+
+    if(
+        /abcdefgh/i.test(password) ||
+        /qwerty/i.test(password)
+    ){
+
+        return false;
+
+    }
 
 
-if(score < 2){
 
-    return false;
 
-}
 
     return true;
 
