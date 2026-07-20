@@ -119,13 +119,15 @@
 
 .menu-button {
 
-    width:40px;
+    width:42px;
 
-    height:40px;
+    height:42px;
 
     background:none;
 
     border:none;
+
+    border-radius:10px;
 
     cursor:pointer;
 
@@ -138,6 +140,16 @@
     align-items:center;
 
     gap:5px;
+
+    transition:.2s;
+
+}
+
+
+
+.menu-button.active {
+
+    background:#484f58;
 
 }
 
