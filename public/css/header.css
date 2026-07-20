@@ -9,7 +9,9 @@
 
     height: 65px;
 
-    background: #21262d;
+
+    background: #1e293b;
+
 
     display: flex;
 
@@ -17,29 +19,44 @@
 
     align-items: center;
 
+
     padding: 0 25px;
+
 
     z-index: 1000;
 
+
+    border-bottom: 1px solid #334155;
+
+
     box-shadow:
-    0 5px 20px rgba(0,0,0,.3);
+    0 5px 20px rgba(0,0,0,.35);
 
 }
+
+
 
 
 
 
 .logo {
 
-    color:white;
+
+    color:#ffffff;
+
 
     text-decoration:none;
 
+
     font-size:22px;
+
 
     font-weight:bold;
 
+
 }
+
+
 
 
 
@@ -47,13 +64,19 @@
 
 .header-right {
 
+
     display:flex;
+
 
     align-items:center;
 
+
     gap:15px;
 
+
 }
+
+
 
 
 
@@ -61,15 +84,25 @@
 
 .header-avatar {
 
+
     width:38px;
+
 
     height:38px;
 
+
     border-radius:50%;
+
 
     object-fit:cover;
 
+
+    border:2px solid #2563eb;
+
+
 }
+
+
 
 
 
@@ -77,11 +110,19 @@
 
 .header-name {
 
-    color:white;
+
+    color:#ffffff;
+
 
     text-decoration:none;
 
+
+    font-weight:600;
+
+
 }
+
+
 
 
 
@@ -89,19 +130,42 @@
 
 .signin-button {
 
-    background:#3b82f6;
+
+    background:#2563eb;
+
 
     color:white;
 
+
     padding:10px 20px;
+
 
     border-radius:10px;
 
+
     text-decoration:none;
+
 
     font-weight:bold;
 
+
+    transition:.2s;
+
+
 }
+
+
+
+
+.signin-button:hover {
+
+
+    background:#1d4ed8;
+
+
+}
+
+
 
 
 
@@ -109,9 +173,13 @@
 
 .menu-container {
 
+
     position:relative;
 
+
 }
+
+
 
 
 
@@ -119,39 +187,62 @@
 
 .menu-button {
 
+
     width:42px;
+
 
     height:42px;
 
-    background:none;
+
+    background:transparent;
+
 
     border:none;
 
+
     border-radius:10px;
+
 
     cursor:pointer;
 
+
     display:flex;
+
 
     flex-direction:column;
 
+
     justify-content:center;
+
 
     align-items:center;
 
+
     gap:5px;
+
 
     transition:.2s;
 
+
 }
 
+
+
+
+
+
+.menu-button:hover,
 
 
 .menu-button.active {
 
-    background:#484f58;
+
+    background:#334155;
+
 
 }
+
+
 
 
 
@@ -159,15 +250,22 @@
 
 .menu-button span {
 
+
     width:25px;
+
 
     height:3px;
 
+
     background:white;
+
 
     border-radius:5px;
 
+
 }
+
+
 
 
 
@@ -175,27 +273,42 @@
 
 .dropdown {
 
+
     position:absolute;
+
 
     right:0;
 
+
     top:50px;
 
-    width:140px;
 
-    background:#30363d;
+    width:160px;
+
+
+    background:#111827;
+
+
+    border:1px solid #334155;
+
 
     border-radius:14px;
 
+
     padding:8px;
 
+
     display:none;
+
 
     box-shadow:
 
     0 10px 30px rgba(0,0,0,.5);
 
+
 }
+
+
 
 
 
@@ -203,9 +316,13 @@
 
 .dropdown.show {
 
+
     display:block;
 
+
 }
+
+
 
 
 
@@ -213,27 +330,31 @@
 
 .dropdown a {
 
+
     display:block;
+
 
     padding:12px;
 
+
     border-radius:10px;
+
 
     text-decoration:none;
 
+
     font-weight:bold;
 
+
+    color:#ffffff;
+
+
+    transition:.2s;
+
+
 }
 
 
-
-
-
-.logout-button {
-
-    color:#ff6b6b;
-
-}
 
 
 
@@ -241,6 +362,22 @@
 
 .dropdown a:hover {
 
-    background:#484f58;
+
+    background:#1e293b;
+
+
+}
+
+
+
+
+
+
+
+.logout-button {
+
+
+    color:#f87171 !important;
+
 
 }
