@@ -183,38 +183,23 @@
 
     height:42px;
 
+    background:#172b4d;
 
-    background:rgba(30,41,59,0.55);
-
-
-    backdrop-filter:blur(10px);
-
-    -webkit-backdrop-filter:blur(10px);
-
-
-    border:1px solid rgba(255,255,255,0.12);
-
+    border:1px solid #2d4f73;
 
     border-radius:10px;
 
-
     cursor:pointer;
-
 
     display:flex;
 
-
     flex-direction:column;
-
 
     justify-content:center;
 
-
     align-items:center;
 
-
     gap:5px;
-
 
     transition:.2s;
 
@@ -222,22 +207,19 @@
 
 
 
-
 .menu-button:hover {
 
-    background:rgba(71,85,105,0.7);
+    background:#234b73;
 
 }
 
 
 
-
-
 .menu-button.active {
 
-    background:rgba(71,85,105,0.9);
+    background:#2563eb;
 
-    border-color:#64748b;
+    border-color:#3b82f6;
 
 }
 
