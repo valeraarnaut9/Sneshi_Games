@@ -389,7 +389,29 @@ app.post("/signup", async (req, res) => {
     } = req.body;
 
 
+if(!validateUsername(username)){
 
+    return res.render("signup",{
+
+        error:
+        "Username must contain 5-15 characters, only latin letters, numbers and _, with at least 3 letters."
+
+    });
+
+}
+
+
+
+if(!validatePassword(password)){
+
+    return res.render("signup",{
+
+        error:
+        "Password must contain 8-25 characters, at least 4 numbers and cannot be only numbers."
+
+    });
+
+}
 
 
     const { data: exists } =
