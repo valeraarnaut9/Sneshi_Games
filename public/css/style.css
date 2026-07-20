@@ -150,18 +150,19 @@ body {
 
 .display-name {
 
-
     margin-top:22px;
-
 
     font-size:32px;
 
-
     font-weight:700;
-
 
     color:#ffffff;
 
+    word-wrap:break-word;
+
+    overflow-wrap:break-word;
+
+    word-break:break-word;
 
 }
 
