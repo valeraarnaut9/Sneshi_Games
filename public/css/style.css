@@ -425,5 +425,66 @@ body::after {
 
     }
 
+    /* ---------- Background Animation ---------- */
+
+
+body::before {
+
+    animation: moveBlueGlow 12s ease-in-out infinite alternate;
+
+}
+
+
+
+body::after {
+
+    animation: movePurpleGlow 15s ease-in-out infinite alternate;
+
+}
+
+
+
+
+@keyframes moveBlueGlow {
+
+
+    0% {
+
+        transform: translate(0, 0);
+
+    }
+
+
+    100% {
+
+        transform: translate(120px, 80px);
+
+    }
+
+
+}
+
+
+
+
+@keyframes movePurpleGlow {
+
+
+    0% {
+
+        transform: translate(0, 0);
+
+    }
+
+
+    100% {
+
+        transform: translate(-100px, -70px);
+
+    }
+
+
+}
+
 
 }
