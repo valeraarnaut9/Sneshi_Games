@@ -10,12 +10,7 @@
     height:65px;
 
 
-    background:rgba(30,41,59,0.65);
-
-
-    backdrop-filter:blur(20px);
-
-    -webkit-backdrop-filter:blur(20px);
+    background:#1e293b;
 
 
     display:flex;
@@ -31,7 +26,7 @@
     z-index:1000;
 
 
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    border-bottom:1px solid #334155;
 
 
     box-shadow:
