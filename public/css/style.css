@@ -39,6 +39,10 @@ body {
 
     background:#0f172a;
 
+    position:relative;
+
+    overflow:hidden;
+
 }
 
 
@@ -291,6 +295,64 @@ body {
 
 
     }
+
+    /* ---------- Background Glow ---------- */
+
+
+body::before {
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+
+    height:500px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+    filter:blur(150px);
+
+    opacity:0.18;
+
+    top:-180px;
+
+    left:-150px;
+
+    z-index:-1;
+
+}
+
+
+
+
+body::after {
+
+    content:"";
+
+    position:fixed;
+
+    width:450px;
+
+    height:450px;
+
+    background:#7c3aed;
+
+    border-radius:50%;
+
+    filter:blur(150px);
+
+    opacity:0.15;
+
+    bottom:-150px;
+
+    right:-120px;
+
+    z-index:-1;
+
+}
 
 
 }
