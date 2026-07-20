@@ -109,42 +109,110 @@ function validatePassword(password){
 
     }
 
+    // Длина
+
     if(password.length < 8 || password.length > 25){
 
         return false;
 
     }
 
-    const digits =
-        password.match(/[0-9]/g);
+    // Хотя бы одна цифра
 
-    if(!digits || digits.length < 4){
-
-        return false;
-
-    }
-
-    // только цифры запрещаем
-
-    if(/^[0-9]+$/.test(password)){
+    if(!/[0-9]/.test(password)){
 
         return false;
 
     }
 
-    // простые последовательности
+    // Не допускаем 4 одинаковых символа подряд
 
-    const badPasswords = [
+    if(/(.)\1{3,}/.test(password)){
 
-        "12345678",
-        "123456789",
-        "1234567890",
-        "87654321",
-        "876543210"
+        return false;
+
+    }
+
+    const lower =
+    password.toLowerCase();
+
+    // Самые распространённые слабые пароли
+
+    const weakPasswords = [
+
+        "password",
+        "password123",
+        "qwerty",
+        "qwerty123",
+        "qwertyui",
+        "admin",
+        "admin123",
+        "letmein",
+        "welcome",
+        "abc12345",
+        "iloveyou"
 
     ];
 
-    if(badPasswords.includes(password)){
+    if(weakPasswords.includes(lower)){
+
+        return false;
+
+    }
+
+    // Если пароль состоит только из цифр
+
+    if(/^[0-9]+$/.test(password)){
+
+        const weakNumbers = [
+
+            "12345678",
+            "123456789",
+            "1234567890",
+
+            "87654321",
+            "876543210",
+
+            "11111111",
+            "22222222",
+            "33333333",
+            "44444444",
+            "55555555",
+            "66666666",
+            "77777777",
+            "88888888",
+            "99999999",
+            "00000000",
+
+            "12121212",
+            "01010101",
+            "987654321"
+
+        ];
+
+        if(weakNumbers.includes(password)){
+
+            return false;
+
+        }
+
+    }
+
+    // Оценка сложности
+
+    let score = 0;
+
+    if(/[a-zA-Z]/.test(password)) score++;
+
+    if(/[0-9]/.test(password)) score++;
+
+    if(/[^a-zA-Z0-9]/.test(password)) score++;
+
+    if(password.length >= 12) score++;
+
+    // Минимум 2 балла
+
+    if(score < 2){
 
         return false;
 
