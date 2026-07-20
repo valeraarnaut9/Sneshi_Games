@@ -120,12 +120,30 @@ function validatePassword(password){
 
 
 
+    // Только латиница, цифры и спецсимволы
+
+    const allowedSymbols =
+    /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]+$/;
+
+
+    if(!allowedSymbols.test(password)){
+
+        return false;
+
+    }
+
+
+
+
+
     const lower =
     password.toLowerCase();
 
 
 
-    // одинаковые символы
+
+
+    // одинаковые символы подряд
 
     if(/(.)\1{3,}/.test(password)){
 
@@ -135,8 +153,11 @@ function validatePassword(password){
 
 
 
-    // повторяющийся шаблон
-    // 51515151, abababab
+
+
+    // повторяющиеся шаблоны
+    // 51515151
+    // abababab
 
     for(let i = 1; i <= 4; i++){
 
@@ -145,9 +166,7 @@ function validatePassword(password){
         password.substring(0,i);
 
 
-
         let repeat = "";
-
 
 
         while(repeat.length < password.length){
@@ -157,13 +176,11 @@ function validatePassword(password){
         }
 
 
-
         repeat =
         repeat.substring(
             0,
             password.length
         );
-
 
 
         if(repeat === password){
@@ -178,12 +195,14 @@ function validatePassword(password){
 
 
 
+
     const weakPasswords = [
 
         "password",
         "password123",
         "qwerty",
         "qwerty123",
+        "admin",
         "admin123",
         "letmein",
         "welcome"
@@ -201,64 +220,59 @@ function validatePassword(password){
 
 
 
-// Если пароль только цифры
 
-if(/^[0-9]+$/.test(password)){
+    // Если пароль только цифры
 
-
-    const badNumbers = [
-
-        // последовательности
-
-        "12345678",
-        "123456789",
-        "1234567890",
-
-        "87654321",
-        "987654321",
+    if(/^[0-9]+$/.test(password)){
 
 
-        // одинаковые цифры
+        const badNumbers = [
 
-        "00000000",
-        "11111111",
-        "22222222",
-        "33333333",
-        "44444444",
-        "55555555",
-        "66666666",
-        "77777777",
-        "88888888",
-        "99999999"
+            "12345678",
+            "123456789",
+            "1234567890",
 
+            "87654321",
+            "987654321",
 
-    ];
+            "00000000",
+            "11111111",
+            "22222222",
+            "33333333",
+            "44444444",
+            "55555555",
+            "66666666",
+            "77777777",
+            "88888888",
+            "99999999"
+
+        ];
 
 
 
-    if(badNumbers.includes(password)){
+        if(badNumbers.includes(password)){
 
-        return false;
+            return false;
+
+        }
+
+
+
+        // 12121212
+        // 56565656
+
+        if(/^(\d{2})\1+$/.test(password)){
+
+            return false;
+
+        }
+
+
+
+        return true;
 
     }
 
-
-
-    // повторяющиеся пары
-    // 12121212
-    // 56565656
-
-    if(/^(\d{2})\1+$/.test(password)){
-
-        return false;
-
-    }
-
-
-
-    return true;
-
-}
 
 
 
@@ -270,6 +284,8 @@ if(/^[0-9]+$/.test(password)){
 
 
 
+    // длина
+
     if(password.length >= 12){
 
         score++;
@@ -277,6 +293,8 @@ if(/^[0-9]+$/.test(password)){
     }
 
 
+
+    // буквы
 
     if(/[a-zA-Z]/.test(password)){
 
@@ -286,6 +304,8 @@ if(/^[0-9]+$/.test(password)){
 
 
 
+    // цифры
+
     if(/[0-9]/.test(password)){
 
         score++;
@@ -293,6 +313,8 @@ if(/^[0-9]+$/.test(password)){
     }
 
 
+
+    // спецсимволы
 
     if(/[^a-zA-Z0-9]/.test(password)){
 
@@ -304,11 +326,10 @@ if(/^[0-9]+$/.test(password)){
 
 
 
-    // слово + одна цифра
+    // слово + цифра
+    // domnaulice5
 
-    if(
-        /^[a-zA-Z]+[0-9]+$/.test(password)
-    ){
+    if(/^[a-zA-Z]+[0-9]+$/.test(password)){
 
         if(password.length < 12){
 
@@ -331,6 +352,7 @@ if(/^[0-9]+$/.test(password)){
 
 
     return true;
+
 
 }
 
