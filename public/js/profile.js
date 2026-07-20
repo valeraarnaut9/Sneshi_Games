@@ -41,30 +41,6 @@ if(closeButton){
 
 
 
-
-
-if(overlay){
-
-
-    overlay.onclick = (e)=>{
-
-
-        if(e.target === overlay){
-
-            overlay.classList.remove("show");
-
-        }
-
-
-    };
-
-
-}
-
-
-
-
-
 const form =
 document.getElementById("editProfileForm");
 
@@ -128,13 +104,16 @@ form.addEventListener("submit", async(e)=>{
 
 
 
-    if(data.success){
+if(data.success){
 
 
-        location.reload();
+    overlay.classList.remove("show");
 
 
-    }
+    location.reload();
+
+
+}
     else{
 
 
