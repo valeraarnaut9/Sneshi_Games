@@ -795,7 +795,7 @@ app.get("/users/:userid", async (req,res)=>{
         .select(
             "userid, username, display_name, bio"
         )
-        .eq("userid",userid)
+        .eq("userid", userid)
         .single();
 
 
@@ -810,6 +810,47 @@ app.get("/users/:userid", async (req,res)=>{
 
     }
 
+
+
+
+
+    const avatarPath =
+    `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${userid}.webp`;
+
+
+
+    const defaultAvatar =
+    "https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/default-avatar/default_avatar.webp";
+
+
+
+
+
+    res.render("profile",{
+
+        username:data.username,
+
+        display_name:data.display_name,
+
+        bio:data.bio,
+
+        userid:data.userid,
+
+        avatar:avatarPath,
+
+        defaultAvatar,
+
+        isOwner:
+            req.user &&
+            req.user.userid == data.userid
+
+    });
+
+
+});
+
+
+// ---------- Edit Profile ----------
 
 app.post("/api/profile/edit", async(req,res)=>{
 
@@ -850,6 +891,7 @@ app.post("/api/profile/edit", async(req,res)=>{
 
 
 
+
     if(
 
         display_name.length < 3 ||
@@ -862,12 +904,12 @@ app.post("/api/profile/edit", async(req,res)=>{
 
             success:false,
 
-            message:
-            "Display Name must be 3-25 characters"
+            message:"Display Name must be 3-25 characters"
 
         });
 
     }
+
 
 
 
@@ -881,8 +923,7 @@ app.post("/api/profile/edit", async(req,res)=>{
 
             success:false,
 
-            message:
-            "Bio is too long"
+            message:"Bio is too long"
 
         });
 
@@ -890,26 +931,24 @@ app.post("/api/profile/edit", async(req,res)=>{
 
 
 
+
     const { error } =
     await supabase
+        .from("users")
+        .update({
 
-    .from("users")
+            display_name,
 
-    .update({
+            bio
 
-        display_name,
+        })
+        .eq(
 
-        bio
+            "userid",
 
-    })
+            req.user.userid
 
-    .eq(
-
-        "userid",
-
-        req.user.userid
-
-    );
+        );
 
 
 
@@ -919,8 +958,7 @@ app.post("/api/profile/edit", async(req,res)=>{
 
             success:false,
 
-            message:
-            "Database error"
+            message:"Database error"
 
         });
 
@@ -936,45 +974,6 @@ app.post("/api/profile/edit", async(req,res)=>{
 
 
 });
-    
-
-
-    const avatarPath =
-    `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${userid}.webp`;
-
-
-
-    const defaultAvatar =
-    "https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/default-avatar/default_avatar.webp";
-
-
-
-
-
-res.render("profile",{
-
-    username:data.username,
-
-    display_name:data.display_name,
-
-    bio:data.bio,
-
-    userid:data.userid,
-
-    avatar:avatarPath,
-
-    defaultAvatar,
-
-    isOwner:
-        req.user &&
-        req.user.userid == data.userid
-
-});
-
-
-
-});
-
 
 
 
