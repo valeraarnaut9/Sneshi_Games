@@ -1,8 +1,8 @@
 * {
 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 
 }
 
@@ -11,8 +11,8 @@
 html,
 body {
 
-    width: 100%;
-    min-height: 100%;
+    width:100%;
+    min-height:100%;
 
 }
 
@@ -20,106 +20,11 @@ body {
 
 body {
 
-    background: #161b22;
+    background:#1e3a5f;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:Inter, Arial, Helvetica, sans-serif;
 
-    color: white;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    min-height: 100vh;
-
-    padding: 30px;
-
-}
-
-
-
-/* ---------- Уведомление ---------- */
-
-
-.notification {
-
-    position: fixed;
-
-    top: 25px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 360px;
-
-    max-width: 90vw;
-
-    background: #21262d;
-
-    border: 1px solid #30363d;
-
-    border-left: 4px solid #ff6b6b;
-
-    border-radius: 14px;
-
-    padding: 16px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    box-shadow:
-    0 10px 35px rgba(0,0,0,.5);
-
-    overflow: hidden;
-
-    z-index: 999;
-
-    animation: notificationShow .3s ease;
-
-}
-
-
-
-.notification::after {
-
-    content:"";
-
-    position:absolute;
-
-    bottom:0;
-
-    left:0;
-
-    height:3px;
-
-    background:#ff6b6b;
-
-    width:100%;
-
-    animation:
-    notificationTimer 5s linear;
-
-}
-
-
-
-.notification-icon {
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:12px;
-
-    background:#3a1f25;
-
-    color:#ff6b6b;
+    color:white;
 
     display:flex;
 
@@ -127,54 +32,280 @@ body {
 
     align-items:center;
 
+    min-height:100vh;
+
+    padding:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
+
+}
+
+
+
+/* ---------- Background Glow ---------- */
+
+
+body::before {
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+
+    height:500px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+    filter:blur(150px);
+
+    opacity:0.18;
+
+    top:-180px;
+
+    left:-150px;
+
+    z-index:-1;
+
+}
+
+
+
+body::after {
+
+    content:"";
+
+    position:fixed;
+
+    width:450px;
+
+    height:450px;
+
+    background:#7c3aed;
+
+    border-radius:50%;
+
+    filter:blur(150px);
+
+    opacity:0.15;
+
+    bottom:-150px;
+
+    right:-120px;
+
+    z-index:-1;
+
+}
+
+
+
+
+
+/* ---------- Notification ---------- */
+
+
+.notification {
+
+    position:fixed;
+
+    top:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+
+    width:360px;
+
+    max-width:90vw;
+
+
+    background:#172b4d;
+
+
+    border:1px solid #2d4f73;
+
+
+    border-left:4px solid #f87171;
+
+
+    border-radius:14px;
+
+
+    padding:16px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+    box-shadow:
+
+    0 10px 35px rgba(0,0,0,.5);
+
+
+    overflow:hidden;
+
+
+    z-index:999;
+
+
+    animation:notificationShow .3s ease;
+
+}
+
+
+
+
+
+.notification::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    bottom:0;
+
+
+    left:0;
+
+
+    height:3px;
+
+
+    background:#f87171;
+
+
+    width:100%;
+
+
+    animation:
+
+    notificationTimer 5s linear;
+
+
+}
+
+
+
+
+
+.notification-icon {
+
+
+    width:42px;
+
+
+    height:42px;
+
+
+    border-radius:12px;
+
+
+    background:#3b1f2a;
+
+
+    color:#f87171;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
     font-size:22px;
+
 
     font-weight:bold;
 
+
     flex-shrink:0;
 
+
 }
+
+
 
 
 
 .notification-content {
 
+
     display:flex;
+
 
     flex-direction:column;
 
+
 }
+
+
 
 
 
 .notification-title {
 
+
     font-size:17px;
 
-    font-weight:bold;
+
+    font-weight:700;
+
 
 }
+
+
 
 
 
 .notification-text {
 
+
     margin-top:3px;
 
-    color:#b1b1b1;
+
+    color:#94a3b8;
+
 
     font-size:14px;
 
+
 }
+
+
+
+
 
 
 
 .notification.hide {
 
+
     animation:
+
     notificationHide .3s forwards;
 
 }
+
+
 
 
 
@@ -204,6 +335,8 @@ body {
 
 
 
+
+
 @keyframes notificationHide {
 
 
@@ -224,6 +357,8 @@ body {
     }
 
 }
+
+
 
 
 
@@ -249,23 +384,36 @@ body {
 
 
 
-/* ---------- Карточка ---------- */
+
+
+/* ---------- Auth Card ---------- */
 
 
 .auth-card {
 
+
     width:420px;
+
 
     max-width:95vw;
 
-    background:#21262d;
+
+    background:#172b4d;
+
 
     border-radius:18px;
 
+
     padding:40px;
 
+
+    border:1px solid #2d4f73;
+
+
     box-shadow:
+
     0 12px 35px rgba(0,0,0,.4);
+
 
 }
 
@@ -273,28 +421,43 @@ body {
 
 
 
-/* ---------- Заголовки ---------- */
+
+
+/* ---------- Titles ---------- */
 
 
 .logo {
 
+
     text-align:center;
+
 
     font-size:34px;
 
+
     margin-bottom:10px;
 
+
+    font-weight:700;
+
+
 }
+
+
 
 
 
 h2 {
 
+
     text-align:center;
+
 
     margin-bottom:35px;
 
-    color:#8b949e;
+
+    color:#94a3b8;
+
 
 }
 
@@ -302,54 +465,79 @@ h2 {
 
 
 
-/* ---------- Поля ---------- */
+
+
+/* ---------- Inputs ---------- */
 
 
 label {
 
+
     display:block;
+
 
     margin-bottom:8px;
 
+
     margin-top:18px;
+
 
     font-size:14px;
 
-    font-weight:bold;
+
+    font-weight:600;
+
 
 }
+
+
 
 
 
 input {
 
+
     width:100%;
+
 
     height:46px;
 
-    border:2px solid #30363d;
 
-    background:#0d1117;
+    border:2px solid #2d4f73;
+
+
+    background:#10243f;
+
 
     color:white;
 
+
     border-radius:10px;
+
 
     padding:0 15px;
 
+
     font-size:16px;
+
 
     outline:none;
 
+
     transition:.2s;
 
+
 }
+
+
 
 
 
 input:focus {
 
-    border-color:#3b82f6;
+
+    border-color:#2563eb;
+
 
 }
 
@@ -357,48 +545,70 @@ input:focus {
 
 
 
-/* ---------- Кнопка ---------- */
+
+
+/* ---------- Button ---------- */
 
 
 button {
 
+
     width:100%;
+
 
     height:48px;
 
+
     margin-top:30px;
+
 
     border:none;
 
+
     border-radius:10px;
 
-    background:#2383ff;
+
+    background:#2563eb;
+
 
     color:white;
 
+
     font-size:16px;
 
-    font-weight:bold;
+
+    font-weight:600;
+
 
     cursor:pointer;
 
+
     transition:.2s;
 
+
 }
+
+
 
 
 
 button:hover {
 
-    background:#1c73df;
+
+    background:#1d4ed8;
+
 
 }
+
+
 
 
 
 button:active {
 
+
     transform:scale(.98);
+
 
 }
 
@@ -406,36 +616,52 @@ button:active {
 
 
 
-/* ---------- Нижний текст ---------- */
+
+
+/* ---------- Bottom Text ---------- */
 
 
 .bottom-text {
 
+
     text-align:center;
+
 
     margin-top:28px;
 
-    color:#8b949e;
+
+    color:#94a3b8;
+
 
 }
+
+
 
 
 
 .bottom-text a {
 
-    color:#3b82f6;
+
+    color:#60a5fa;
+
 
     text-decoration:none;
 
-    font-weight:bold;
+
+    font-weight:600;
+
 
 }
+
+
 
 
 
 .bottom-text a:hover {
 
+
     text-decoration:underline;
+
 
 }
 
@@ -443,15 +669,19 @@ button:active {
 
 
 
-/* ---------- Телефон ---------- */
 
 
-@media (max-width:500px) {
+/* ---------- Mobile ---------- */
+
+
+@media(max-width:500px) {
 
 
     .auth-card {
 
+
         padding:30px 22px;
+
 
     }
 
@@ -459,7 +689,9 @@ button:active {
 
     .logo {
 
+
         font-size:28px;
+
 
     }
 
@@ -467,7 +699,9 @@ button:active {
 
     .notification {
 
+
         width:90vw;
+
 
     }
 
