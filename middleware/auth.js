@@ -71,18 +71,39 @@ async function auth(req, res, next) {
 
 
 
-    const { data: user } = await supabase
-        .from("users")
-        .select(
-            "userid, username, display_name"
-        )
-        .eq("userid", session.userid)
-        .single();
+const { data: user } = await supabase
+    .from("users")
+    .select(
+        "userid, username, display_name"
+    )
+    .eq("userid", session.userid)
+    .single();
 
 
 
+if(user){
 
-    req.user = user || null;
+
+    const avatarPath =
+    `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${user.userid}.webp`;
+
+
+
+    const defaultAvatar =
+    "https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/default-avatar/default_avatar.webp";
+
+
+
+    user.avatar = avatarPath;
+
+    user.defaultAvatar = defaultAvatar;
+
+
+}
+
+
+
+req.user = user || null;
 
 
 
