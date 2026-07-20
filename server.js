@@ -811,7 +811,132 @@ app.get("/users/:userid", async (req,res)=>{
     }
 
 
+app.post("/api/profile/edit", async(req,res)=>{
 
+
+    if(!req.user){
+
+        return res
+        .status(401)
+        .json({
+
+            success:false,
+
+            message:"Unauthorized"
+
+        });
+
+    }
+
+
+
+    let{
+
+        display_name,
+
+        bio
+
+    } = req.body;
+
+
+
+    display_name =
+    (display_name || "").trim();
+
+
+
+    bio =
+    (bio || "").trim();
+
+
+
+    if(
+
+        display_name.length < 3 ||
+
+        display_name.length > 25
+
+    ){
+
+        return res.json({
+
+            success:false,
+
+            message:
+            "Display Name must be 3-25 characters"
+
+        });
+
+    }
+
+
+
+    if(
+
+        bio.length > 250
+
+    ){
+
+        return res.json({
+
+            success:false,
+
+            message:
+            "Bio is too long"
+
+        });
+
+    }
+
+
+
+    const { error } =
+    await supabase
+
+    .from("users")
+
+    .update({
+
+        display_name,
+
+        bio
+
+    })
+
+    .eq(
+
+        "userid",
+
+        req.user.userid
+
+    );
+
+
+
+    if(error){
+
+        return res.json({
+
+            success:false,
+
+            message:
+            "Database error"
+
+        });
+
+    }
+
+
+
+    res.json({
+
+        success:true
+
+    });
+
+
+});
+    
 
 
     const avatarPath =
@@ -828,7 +953,6 @@ app.get("/users/:userid", async (req,res)=>{
 
 res.render("profile",{
 
-
     username:data.username,
 
     display_name:data.display_name,
@@ -841,8 +965,9 @@ res.render("profile",{
 
     defaultAvatar,
 
-    currentUser: req.user || null
-
+    isOwner:
+        req.user &&
+        req.user.userid == data.userid
 
 });
 
