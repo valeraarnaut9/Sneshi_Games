@@ -199,24 +199,38 @@ function validatePassword(password){
     }
 
     // Оценка сложности
+// Если пароль только цифры
 
-    let score = 0;
+if(/^[0-9]+$/.test(password)){
 
-    if(/[a-zA-Z]/.test(password)) score++;
+    return true;
 
-    if(/[0-9]/.test(password)) score++;
+}
 
-    if(/[^a-zA-Z0-9]/.test(password)) score++;
 
-    if(password.length >= 12) score++;
+// Для паролей с буквами/символами
+// оставляем проверку сложности
 
-    // Минимум 2 балла
+let score = 0;
 
-    if(score < 2){
 
-        return false;
+if(/[a-zA-Z]/.test(password)) score++;
 
-    }
+
+if(/[0-9]/.test(password)) score++;
+
+
+if(/[^a-zA-Z0-9]/.test(password)) score++;
+
+
+if(password.length >= 12) score++;
+
+
+if(score < 2){
+
+    return false;
+
+}
 
     return true;
 
