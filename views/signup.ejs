@@ -17,41 +17,61 @@
 <body>
 
 
+
 <% if (error) { %>
+
 
 <div class="notification">
 
-    <%= error %>
+
+    <div class="notification-icon">
+        !
+    </div>
+
+
+
+    <div class="notification-content">
+
+
+        <div class="notification-title">
+
+            Error
+
+        </div>
+
+
+
+        <div class="notification-text">
+
+            <%= error %>
+
+        </div>
+
+
+    </div>
+
 
 </div>
 
 
+
 <script>
 
-setTimeout(() => {
 
-    const notification =
-        document.querySelector(".notification");
+setTimeout(()=>{
 
 
-    if(notification){
-
-        notification.style.opacity = "0";
-
-
-        setTimeout(() => {
-
-            notification.style.display = "none";
-
-        }, 300);
-
-    }
+    document
+    .querySelector(".notification")
+    .classList.add("hide");
 
 
-}, 5000);
+},5000);
+
 
 
 </script>
+
 
 <% } %>
 
@@ -62,9 +82,10 @@ setTimeout(() => {
 <div class="auth-card">
 
 
+
 <h1 class="logo">
 
-Empty Account
+    Empty Account
 
 </h1>
 
@@ -72,14 +93,17 @@ Empty Account
 
 <h2>
 
-Sign Up
+    Sign Up
 
 </h2>
 
 
 
 
+
 <form action="/signup" method="POST">
+
+
 
 
 
@@ -96,7 +120,7 @@ type="text"
 
 name="username"
 
-placeholder="Choose username"
+placeholder="Enter username"
 
 required
 
@@ -119,7 +143,7 @@ type="text"
 
 name="display_name"
 
-placeholder="Your display name"
+placeholder="Enter display name"
 
 required
 
@@ -142,7 +166,7 @@ type="password"
 
 name="password"
 
-placeholder="Create password"
+placeholder="Enter password"
 
 required
 
@@ -151,10 +175,9 @@ required
 
 
 
-
 <button type="submit">
 
-Create Account
+Sign Up
 
 </button>
 
@@ -168,6 +191,7 @@ Create Account
 
 
 <p class="bottom-text">
+
 
 Already have an account?
 
@@ -183,7 +207,10 @@ Sign In
 
 
 
+
 </div>
+
+
 
 
 
