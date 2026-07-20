@@ -43,7 +43,8 @@
 
                 <button 
                 class="menu-button"
-                onclick="toggleMenu()"
+                id="menuButton"
+                onclick="toggleMenu(event)"
                 >
 
 
@@ -58,7 +59,11 @@
 
 
 
-                <div class="dropdown" id="menu">
+                <div 
+                class="dropdown" 
+                id="menu"
+                onclick="event.stopPropagation()"
+                >
 
 
                     <a 
@@ -115,14 +120,25 @@
 <script>
 
 
-function toggleMenu(){
+function toggleMenu(event){
+
+
+    event.stopPropagation();
 
 
     const menu =
     document.getElementById("menu");
 
 
+    const button =
+    document.getElementById("menuButton");
+
+
+
     menu.classList.toggle("show");
+
+
+    button.classList.toggle("active");
 
 
 }
@@ -138,10 +154,41 @@ function closeMenu(){
     document.getElementById("menu");
 
 
-    menu.classList.remove("show");
+    const button =
+    document.getElementById("menuButton");
+
+
+
+    if(menu){
+
+        menu.classList.remove("show");
+
+    }
+
+
+
+    if(button){
+
+        button.classList.remove("active");
+
+    }
 
 
 }
+
+
+
+
+
+document.addEventListener(
+"click",
+function(){
+
+
+    closeMenu();
+
+
+});
 
 
 
