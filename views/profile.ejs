@@ -11,7 +11,9 @@
 
     <link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <link rel="stylesheet" href="/css/profile-edit.css">
 
 </head>
 
@@ -25,35 +27,163 @@
 
 
 
+
 <div class="profile-card">
 
 
-        <img
-            class="avatar"
-            src="<%= avatar %>"
-            onerror="this.src='<%= defaultAvatar %>'"
-        >
+    <img
+        class="avatar"
+        src="<%= avatar %>"
+        onerror="this.src='<%= defaultAvatar %>'"
+    >
 
 
 
-        <h1 class="display-name">
-            <%= display_name %>
-        </h1>
+    <h1 class="display-name">
+        <%= display_name %>
+    </h1>
 
 
 
-        <p class="username">
-            @<%= username %>
-        </p>
+    <p class="username">
+        @<%= username %>
+    </p>
 
 
 
-        <p class="bio">
-            <%= bio %>
-        </p>
+    <p class="bio">
+        <%= bio %>
+    </p>
+
+
+
+    <% if(isOwner){ %>
+
+    <button
+    class="edit-profile-button"
+    id="openEditProfile">
+
+        Edit Profile
+
+    </button>
+
+
+    <% } %>
+
+
+
+</div>
+
+
+
+
+
+<% if(isOwner){ %>
+
+
+<div
+class="profile-edit-overlay"
+id="profileEditOverlay">
+
+
+
+    <div class="profile-edit-window">
+
+
+
+        <div class="profile-edit-header">
+
+
+            <h2>
+                Edit Profile
+            </h2>
+
+
+
+            <button
+            class="profile-edit-close"
+            id="closeEditProfile">
+
+                ✕
+
+            </button>
+
+
+        </div>
+
+
+
+
+
+        <div class="profile-edit-line"></div>
+
+
+
+
+
+        <form id="editProfileForm">
+
+
+
+            <label>
+                Display Name
+            </label>
+
+
+
+            <input
+            id="displayNameInput"
+            type="text"
+            maxlength="25"
+            value="<%= display_name %>"
+            >
+
+
+
+
+
+            <label>
+                Bio
+            </label>
+
+
+
+            <textarea
+            id="bioInput"
+            maxlength="250"
+            ><%= bio %></textarea>
+
+
+
+
+
+            <button
+            class="confirm-profile-button"
+            type="submit">
+
+                Confirm
+
+            </button>
+
+
+
+        </form>
+
 
 
     </div>
+
+
+</div>
+
+
+<% } %>
+
+
+
+
+
+<script src="/js/profile.js"></script>
 
 
 </body>
