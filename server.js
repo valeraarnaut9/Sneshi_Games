@@ -111,6 +111,7 @@ function validatePassword(password){
     }
 
 
+
     if(password.length < 8 || password.length > 25){
 
         return false;
@@ -119,18 +120,12 @@ function validatePassword(password){
 
 
 
-    // должна быть хотя бы одна цифра
-
-    if(!/[0-9]/.test(password)){
-
-        return false;
-
-    }
+    const lower =
+    password.toLowerCase();
 
 
 
-
-    // одинаковые символы подряд
+    // одинаковые символы
 
     if(/(.)\1{3,}/.test(password)){
 
@@ -140,14 +135,48 @@ function validatePassword(password){
 
 
 
+    // повторяющийся шаблон
+    // 51515151, abababab
 
-    const lower =
-    password.toLowerCase();
+    for(let i = 1; i <= 4; i++){
+
+
+        const part =
+        password.substring(0,i);
 
 
 
+        let repeat = "";
 
-    // популярные слабые пароли
+
+
+        while(repeat.length < password.length){
+
+            repeat += part;
+
+        }
+
+
+
+        repeat =
+        repeat.substring(
+            0,
+            password.length
+        );
+
+
+
+        if(repeat === password){
+
+            return false;
+
+        }
+
+
+    }
+
+
+
 
     const weakPasswords = [
 
@@ -172,37 +201,98 @@ function validatePassword(password){
 
 
 
-    // повторяющийся шаблон
-    // 51515151, abababa
+    // Если только цифры
 
-    for(let i = 1; i <= 4; i++){
-
-
-        const pattern =
-        password.substring(0,i);
+    if(/^[0-9]+$/.test(password)){
 
 
-        let repeated = "";
+        const badNumbers = [
+
+            "12345678",
+            "123456789",
+            "1234567890",
+
+            "87654321",
+            "987654321",
+
+            "11111111",
+            "22222222",
+            "33333333",
+            "44444444",
+            "55555555",
+            "66666666",
+            "77777777",
+            "88888888",
+            "99999999",
+            "00000000"
+
+        ];
 
 
 
-        while(repeated.length < password.length){
+        if(badNumbers.includes(password)){
 
-            repeated += pattern;
+            return false;
 
         }
 
 
 
-        repeated =
-        repeated.substring(
-            0,
-            password.length
-        );
+        return true;
+
+    }
 
 
 
-        if(repeated === password){
+
+
+    // Система очков
+
+    let score = 0;
+
+
+
+    if(password.length >= 12){
+
+        score++;
+
+    }
+
+
+
+    if(/[a-zA-Z]/.test(password)){
+
+        score++;
+
+    }
+
+
+
+    if(/[0-9]/.test(password)){
+
+        score++;
+
+    }
+
+
+
+    if(/[^a-zA-Z0-9]/.test(password)){
+
+        score++;
+
+    }
+
+
+
+
+
+    // слово + одна цифра
+
+    if(
+        /^[a-zA-Z]+[0-9]+$/.test(password)
+    ){
+
+        if(password.length < 12){
 
             return false;
 
@@ -214,43 +304,11 @@ function validatePassword(password){
 
 
 
-    // последовательности цифр
-
-    const sequences = [
-
-        "12345678",
-        "23456789",
-        "34567890",
-
-        "87654321",
-        "98765432"
-
-    ];
-
-
-
-    if(sequences.includes(password)){
+    if(score < 2){
 
         return false;
 
     }
-
-
-
-
-
-    // последовательность букв
-
-    if(
-        /abcdefgh/i.test(password) ||
-        /qwerty/i.test(password)
-    ){
-
-        return false;
-
-    }
-
-
 
 
 
