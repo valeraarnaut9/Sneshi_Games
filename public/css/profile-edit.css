@@ -1,1 +1,247 @@
 
+/* ---------- Overlay ---------- */
+
+.profile-edit-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.5);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+}
+
+
+
+.profile-edit-overlay.show {
+
+    display: flex;
+
+}
+
+
+
+
+
+/* ---------- Window ---------- */
+
+
+.profile-edit-window {
+
+
+    width: 420px;
+
+    max-width: 90%;
+
+
+    background: #ffffff;
+
+
+    border-radius: 15px;
+
+
+    padding: 25px;
+
+
+    box-sizing: border-box;
+
+
+}
+
+
+
+
+
+/* ---------- Header ---------- */
+
+
+.profile-edit-header {
+
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+
+}
+
+
+
+.profile-edit-header h2 {
+
+
+    margin: 0;
+
+    font-size: 24px;
+
+
+}
+
+
+
+
+.profile-edit-close {
+
+
+    border: none;
+
+    background: transparent;
+
+
+    font-size: 22px;
+
+
+    cursor: pointer;
+
+
+}
+
+
+
+
+
+.profile-edit-line {
+
+
+    width: 100%;
+
+
+    height: 1px;
+
+
+    background: #ddd;
+
+
+    margin: 20px 0;
+
+
+}
+
+
+
+
+
+/* ---------- Form ---------- */
+
+
+#editProfileForm {
+
+
+    display: flex;
+
+    flex-direction: column;
+
+
+    gap: 10px;
+
+
+}
+
+
+
+#editProfileForm label {
+
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+
+}
+
+
+
+#editProfileForm input,
+
+
+#editProfileForm textarea {
+
+
+    width: 100%;
+
+
+    box-sizing: border-box;
+
+
+    padding: 10px;
+
+
+    border-radius: 8px;
+
+
+    border: 1px solid #ccc;
+
+
+    font-size: 15px;
+
+
+}
+
+
+
+#editProfileForm textarea {
+
+
+    min-height: 100px;
+
+
+    resize: none;
+
+
+}
+
+
+
+
+
+.confirm-profile-button {
+
+
+    margin-top: 15px;
+
+
+    padding: 12px;
+
+
+    border-radius: 10px;
+
+
+    border: none;
+
+
+    background: #222;
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+.confirm-profile-button:hover {
+
+
+    opacity:0.8;
+
+
+}
