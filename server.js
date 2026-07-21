@@ -382,7 +382,7 @@ app.get("/", (req, res) => {
 // ---------- Sign In ----------
 
 app.get("/signin", (req, res) => {
-
+console.log("SIGNIN GET");
 
     if (req.user) {
 
@@ -404,7 +404,7 @@ app.get("/signin", (req, res) => {
 
 
 app.post("/signin", async (req, res) => {
-
+console.log("SIGNIN POST");
 
     const {
         username,
