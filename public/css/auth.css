@@ -298,9 +298,9 @@ input {
 
     border:2px solid #2d4f73;
 
-    background:#102440;
+    background:#101d35;
 
-    color:#ffffff;
+    color:white;
 
     border-radius:10px;
 
@@ -314,7 +314,6 @@ input {
 
 }
 
-
 input::placeholder {
 
     color:#94a3b8;
@@ -324,6 +323,8 @@ input::placeholder {
 input:focus {
 
     border-color:#2563eb;
+
+    box-shadow:0 0 8px rgba(37,99,235,0.35);
 
 }
 
