@@ -382,7 +382,6 @@ app.get("/", (req, res) => {
 // ---------- Sign In ----------
 
 app.get("/signin", (req, res) => {
-console.log("SIGNIN GET");
 
     if (req.user) {
 
@@ -392,7 +391,7 @@ console.log("SIGNIN GET");
 
     }
 
-console.log("notification null");
+
     res.render("signin", {
 
     notification: null
@@ -404,7 +403,6 @@ console.log("notification null");
 
 
 app.post("/signin", async (req, res) => {
-console.log("SIGNIN POST");
 
     const {
         username,
