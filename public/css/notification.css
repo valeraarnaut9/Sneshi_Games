@@ -1,1 +1,300 @@
 
+* {
+
+    font-family:"Inter", sans-serif;
+
+}
+
+
+
+/* ---------- Ошибка ---------- */
+
+
+.notification {
+
+    position:fixed;
+
+    top:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+
+    width:360px;
+
+    max-width:90vw;
+
+
+    background:rgba(127,29,29,0.45);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+
+    border:1px solid rgba(248,113,113,0.35);
+
+
+    border-left:4px solid #ef4444;
+
+
+    border-radius:16px;
+
+
+    padding:16px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+
+    box-shadow:
+
+    0 10px 35px rgba(0,0,0,.5);
+
+
+    overflow:hidden;
+
+
+    z-index:999;
+
+
+    animation:notificationShow .3s ease;
+
+}
+
+
+
+
+
+/* ---------- Иконка ---------- */
+
+
+.notification-icon {
+
+
+    width:42px;
+
+    height:42px;
+
+
+    border-radius:12px;
+
+
+    background:rgba(239,68,68,0.2);
+
+
+    color:#f87171;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:22px;
+
+
+    font-weight:700;
+
+
+    flex-shrink:0;
+
+}
+
+
+
+
+
+/* ---------- Текст ---------- */
+
+
+.notification-content {
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.notification-title {
+
+
+    font-size:17px;
+
+
+    font-weight:700;
+
+
+    color:white;
+
+
+}
+
+
+
+
+.notification-text {
+
+
+    margin-top:3px;
+
+
+    color:#fecaca;
+
+
+    font-size:14px;
+
+
+    font-weight:400;
+
+}
+
+
+
+
+
+/* ---------- Таймер ---------- */
+
+
+.notification::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    bottom:0;
+
+
+    left:0;
+
+
+    height:3px;
+
+
+    background:#ef4444;
+
+
+    width:100%;
+
+
+    animation:notificationTimer 5s linear;
+
+}
+
+
+
+
+
+/* ---------- Скрытие ---------- */
+
+
+.notification.hide {
+
+
+    animation:notificationHide .3s forwards;
+
+}
+
+
+
+
+
+/* ---------- Анимации ---------- */
+
+
+@keyframes notificationShow {
+
+
+    from {
+
+
+        opacity:0;
+
+
+        transform:translate(-50%,-20px);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+
+        transform:translate(-50%,0);
+
+
+    }
+
+}
+
+
+
+
+
+@keyframes notificationHide {
+
+
+    from {
+
+
+        opacity:1;
+
+
+    }
+
+
+    to {
+
+
+        opacity:0;
+
+
+        transform:translate(-50%,-20px);
+
+
+    }
+
+}
+
+
+
+
+
+@keyframes notificationTimer {
+
+
+    from {
+
+
+        width:100%;
+
+
+    }
+
+
+    to {
+
+
+        width:0;
+
+
+    }
+
+      }
