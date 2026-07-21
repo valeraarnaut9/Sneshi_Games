@@ -104,7 +104,6 @@ body::after {
 
 /* ---------- Ошибка ---------- */
 
-
 .notification {
 
     position:fixed;
@@ -121,15 +120,21 @@ body::after {
     max-width:90vw;
 
 
-    background:#1e3a5f;
+    background:rgba(127,29,29,0.45);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
 
 
-    border:1px solid #334155;
+    border:1px solid rgba(248,113,113,0.35);
+
 
     border-left:4px solid #ef4444;
 
 
-    border-radius:14px;
+    border-radius:16px;
+
 
     padding:16px;
 
@@ -142,10 +147,20 @@ body::after {
 
 
     box-shadow:
+
     0 10px 35px rgba(0,0,0,.5);
 
 
+    overflow:hidden;
+
+
     z-index:999;
+
+
+    animation:notificationShow .3s ease;
+
+
+    font-family:"Inter", sans-serif;
 
 }
 
@@ -153,6 +168,7 @@ body::after {
 
 
 .notification-icon {
+
 
     width:42px;
 
@@ -162,33 +178,49 @@ body::after {
     border-radius:12px;
 
 
-    background:#3f1d2e;
+    background:rgba(239,68,68,0.2);
 
 
-    color:#ff6b6b;
+    color:#f87171;
 
 
     display:flex;
 
+
     justify-content:center;
+
 
     align-items:center;
 
 
     font-size:22px;
 
-    font-weight:bold;
+
+    font-weight:700;
+
+
+    flex-shrink:0;
+
+
+    font-family:"Inter", sans-serif;
 
 }
 
 
 
 
+
 .notification-title {
+
 
     font-size:17px;
 
+
     font-weight:700;
+
+
+    color:white;
+
 
 }
 
@@ -197,14 +229,19 @@ body::after {
 
 .notification-text {
 
+
     margin-top:3px;
 
-    color:#cbd5e1;
+
+    color:#fecaca;
+
 
     font-size:14px;
 
-}
 
+    font-weight:400;
+
+}
 
 
 
