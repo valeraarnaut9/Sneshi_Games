@@ -1,37 +1,43 @@
 * {
+
     font-family:"Inter", sans-serif;
+
 }
 
 
-/* ---------- Ошибка ---------- */
+/* ---------- Notification ---------- */
+
 
 .notification {
 
     position:fixed;
 
     top:25px;
+
     left:50%;
 
     transform:translateX(-50%);
 
 
     width:360px;
+
     max-width:90vw;
 
 
     background:rgba(127,29,29,0.45);
 
     backdrop-filter:blur(18px);
+
     -webkit-backdrop-filter:blur(18px);
 
 
     border:1px solid rgba(248,113,113,0.35);
 
 
-    border-radius:16px;
+    border-radius:20px;
 
 
-    padding:16px;
+    padding:16px 16px 19px 18px;
 
 
     display:flex;
@@ -42,6 +48,7 @@
 
 
     box-shadow:
+
     0 10px 35px rgba(0,0,0,.5);
 
 
@@ -58,21 +65,26 @@
 
 
 
-/* Красная вертикальная линия */
+/* ---------- Левая красная линия ---------- */
+
 
 .notification::before {
 
     content:"";
 
+
     position:absolute;
+
 
     left:0;
 
     top:0;
 
+
     width:4px;
 
     height:100%;
+
 
     background:#ef4444;
 
@@ -82,34 +94,43 @@
 
 
 
-/* Нижний таймер */
+/* ---------- Таймер ---------- */
+
 
 .notification::after {
 
+
     content:"";
+
 
     position:absolute;
 
+
     bottom:0;
+
 
     left:0;
 
+
     height:3px;
 
+
     background:#ef4444;
+
 
     width:100%;
 
 
     animation:notificationTimer 5s linear;
 
+
 }
 
 
 
 
 
-/* ---------- Иконка ---------- */
+/* ---------- Icon ---------- */
 
 
 .notification-icon {
@@ -152,42 +173,57 @@
 
 
 
-/* ---------- Контент ---------- */
+/* ---------- Content ---------- */
 
 
 .notification-content {
+
 
     display:flex;
 
     flex-direction:column;
 
+
 }
+
 
 
 
 
 .notification-title {
 
+
     font-size:17px;
+
 
     font-weight:700;
 
+
     color:white;
 
+
 }
+
 
 
 
 
 .notification-text {
 
+
     margin-top:3px;
+
 
     color:#fecaca;
 
+
     font-size:14px;
 
+
     font-weight:400;
+
+
+    line-height:1.4;
 
 }
 
@@ -195,10 +231,11 @@
 
 
 
-/* ---------- Скрытие ---------- */
+/* ---------- Hide ---------- */
 
 
 .notification.hide {
+
 
     animation:notificationHide .3s forwards;
 
@@ -208,7 +245,7 @@
 
 
 
-/* ---------- Анимации ---------- */
+/* ---------- Animations ---------- */
 
 
 @keyframes notificationShow {
@@ -216,18 +253,24 @@
 
     from {
 
+
         opacity:0;
 
-        transform:translate(-50%,-20px);
+
+        transform:translate(-50%,-25px);
+
 
     }
 
 
     to {
 
+
         opacity:1;
 
+
         transform:translate(-50%,0);
+
 
     }
 
@@ -242,18 +285,24 @@
 
     from {
 
+
         opacity:1;
 
+
         transform:translate(-50%,0);
+
 
     }
 
 
     to {
 
+
         opacity:0;
 
-        transform:translate(-50%,-20px);
+
+        transform:translate(-50%,-25px);
+
 
     }
 
@@ -268,14 +317,18 @@
 
     from {
 
+
         width:100%;
+
 
     }
 
 
     to {
 
+
         width:0;
+
 
     }
 
