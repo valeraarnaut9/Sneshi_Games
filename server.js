@@ -582,14 +582,9 @@ app.post("/signup", async (req, res) => {
 
 
     const {
-
-        username,
-
-        display_name,
-
-        password
-
-    } = req.body;
+    username,
+    password
+} = req.body;
 
 
 if(!validateUsername(username)){
@@ -708,20 +703,20 @@ if(!validatePassword(password)){
 
 
     await supabase
-        .from("users")
-        .insert({
+    .from("users")
+    .insert({
 
-            userid,
+        userid,
 
-            username,
+        username,
 
-            display_name,
+        display_name: username,
 
-            bio: "No bio",
+        bio: "No bio",
 
-            password_hash: hash
+        password_hash: hash
 
-        });
+    });
 
 
 
