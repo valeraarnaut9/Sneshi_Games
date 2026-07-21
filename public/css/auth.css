@@ -214,18 +214,19 @@ body::after {
 .auth-card {
 
     width:420px;
+
     max-width:95vw;
 
-    background:#172f4d;
+    background:#1e3a5f;
 
     border-radius:18px;
 
     padding:40px;
 
-    border:1px solid #24507d;
+    border:1px solid #334155;
 
     box-shadow:
-    0 12px 35px rgba(0,0,0,.45);
+    0 10px 30px rgba(0,0,0,.4);
 
 }
 
