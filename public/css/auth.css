@@ -1,8 +1,8 @@
 * {
 
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 
 }
 
@@ -20,9 +20,9 @@ body {
 
 body {
 
-    background:#1e3a5f;
+    background:#0f172a;
 
-    font-family:Inter, Arial, Helvetica, sans-serif;
+    font-family:Inter, Arial, sans-serif;
 
     color:white;
 
@@ -36,17 +36,11 @@ body {
 
     padding:30px;
 
-    position:relative;
-
-    overflow:hidden;
-
-    isolation:isolate;
-
 }
 
 
 
-/* ---------- Background Glow ---------- */
+/* ---------- Фоновые пятна ---------- */
 
 
 body::before {
@@ -65,9 +59,9 @@ body::before {
 
     filter:blur(150px);
 
-    opacity:0.18;
+    opacity:.18;
 
-    top:-180px;
+    top:-150px;
 
     left:-150px;
 
@@ -93,7 +87,7 @@ body::after {
 
     filter:blur(150px);
 
-    opacity:0.15;
+    opacity:.15;
 
     bottom:-150px;
 
@@ -107,7 +101,7 @@ body::after {
 
 
 
-/* ---------- Notification ---------- */
+/* ---------- Ошибка ---------- */
 
 
 .notification {
@@ -126,89 +120,40 @@ body::after {
     max-width:90vw;
 
 
-    background:#172b4d;
+    background:#1e3a5f;
 
 
-    border:1px solid #2d4f73;
+    border:1px solid #334155;
 
-
-    border-left:4px solid #f87171;
+    border-left:4px solid #ef4444;
 
 
     border-radius:14px;
-
 
     padding:16px;
 
 
     display:flex;
 
-
     align-items:center;
-
 
     gap:15px;
 
 
     box-shadow:
-
     0 10px 35px rgba(0,0,0,.5);
-
-
-    overflow:hidden;
 
 
     z-index:999;
 
-
-    animation:notificationShow .3s ease;
-
 }
-
-
-
-
-
-.notification::after {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    bottom:0;
-
-
-    left:0;
-
-
-    height:3px;
-
-
-    background:#f87171;
-
-
-    width:100%;
-
-
-    animation:
-
-    notificationTimer 5s linear;
-
-
-}
-
 
 
 
 
 .notification-icon {
 
-
     width:42px;
-
 
     height:42px;
 
@@ -216,177 +161,54 @@ body::after {
     border-radius:12px;
 
 
-    background:#3b1f2a;
+    background:#3f1d2e;
 
 
-    color:#f87171;
+    color:#ff6b6b;
 
 
     display:flex;
 
-
     justify-content:center;
-
 
     align-items:center;
 
 
     font-size:22px;
 
-
     font-weight:bold;
 
-
-    flex-shrink:0;
-
-
 }
-
-
-
-
-
-.notification-content {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-}
-
 
 
 
 
 .notification-title {
 
-
     font-size:17px;
-
 
     font-weight:700;
 
-
 }
-
 
 
 
 
 .notification-text {
 
-
     margin-top:3px;
 
-
-    color:#94a3b8;
-
+    color:#cbd5e1;
 
     font-size:14px;
 
-
 }
 
 
 
 
 
-
-
-.notification.hide {
-
-
-    animation:
-
-    notificationHide .3s forwards;
-
-}
-
-
-
-
-
-@keyframes notificationShow {
-
-
-    from {
-
-        opacity:0;
-
-        transform:
-        translate(-50%,-20px);
-
-    }
-
-
-    to {
-
-        opacity:1;
-
-        transform:
-        translate(-50%,0);
-
-    }
-
-}
-
-
-
-
-
-@keyframes notificationHide {
-
-
-    from {
-
-        opacity:1;
-
-    }
-
-
-    to {
-
-        opacity:0;
-
-        transform:
-        translate(-50%,-20px);
-
-    }
-
-}
-
-
-
-
-
-@keyframes notificationTimer {
-
-
-    from {
-
-        width:100%;
-
-    }
-
-
-    to {
-
-        width:0%;
-
-    }
-
-}
-
-
-
-
-
-
-
-/* ---------- Auth Card ---------- */
+/* ---------- Главная карточка ---------- */
 
 
 .auth-card {
@@ -394,11 +216,10 @@ body::after {
 
     width:420px;
 
-
     max-width:95vw;
 
 
-    background:#172b4d;
+    background:#1e3a5f;
 
 
     border-radius:18px;
@@ -407,12 +228,12 @@ body::after {
     padding:40px;
 
 
-    border:1px solid #2d4f73;
+    border:1px solid #334155;
 
 
     box-shadow:
 
-    0 12px 35px rgba(0,0,0,.4);
+    0 12px 35px rgba(0,0,0,.45);
 
 
 }
@@ -421,25 +242,18 @@ body::after {
 
 
 
-
-
-/* ---------- Titles ---------- */
+/* ---------- Лого ---------- */
 
 
 .logo {
 
-
     text-align:center;
-
 
     font-size:34px;
 
-
-    margin-bottom:10px;
-
-
     font-weight:700;
 
+    margin-bottom:10px;
 
 }
 
@@ -449,15 +263,13 @@ body::after {
 
 h2 {
 
-
     text-align:center;
-
 
     margin-bottom:35px;
 
+    color:#cbd5e1;
 
-    color:#94a3b8;
-
+    font-weight:500;
 
 }
 
@@ -465,31 +277,23 @@ h2 {
 
 
 
-
-
-/* ---------- Inputs ---------- */
+/* ---------- Поля ---------- */
 
 
 label {
 
-
     display:block;
 
-
     margin-bottom:8px;
-
 
     margin-top:18px;
 
 
     font-size:14px;
 
-
     font-weight:600;
 
-
 }
-
 
 
 
@@ -503,10 +307,10 @@ input {
     height:46px;
 
 
-    border:2px solid #2d4f73;
+    border:2px solid #334155;
 
 
-    background:#10243f;
+    background:#0f172a;
 
 
     color:white;
@@ -526,18 +330,14 @@ input {
 
     transition:.2s;
 
-
 }
-
 
 
 
 
 input:focus {
 
-
     border-color:#2563eb;
-
 
 }
 
@@ -545,9 +345,7 @@ input:focus {
 
 
 
-
-
-/* ---------- Button ---------- */
+/* ---------- Кнопка ---------- */
 
 
 button {
@@ -577,7 +375,7 @@ button {
     font-size:16px;
 
 
-    font-weight:600;
+    font-weight:700;
 
 
     cursor:pointer;
@@ -585,30 +383,22 @@ button {
 
     transition:.2s;
 
-
 }
-
 
 
 
 
 button:hover {
 
-
     background:#1d4ed8;
 
-
 }
-
-
 
 
 
 button:active {
 
-
     transform:scale(.98);
-
 
 }
 
@@ -616,9 +406,7 @@ button:active {
 
 
 
-
-
-/* ---------- Bottom Text ---------- */
+/* ---------- Нижний текст ---------- */
 
 
 .bottom-text {
@@ -638,7 +426,6 @@ button:active {
 
 
 
-
 .bottom-text a {
 
 
@@ -648,20 +435,15 @@ button:active {
     text-decoration:none;
 
 
-    font-weight:600;
-
+    font-weight:700;
 
 }
-
-
 
 
 
 .bottom-text a:hover {
 
-
     text-decoration:underline;
-
 
 }
 
@@ -669,12 +451,7 @@ button:active {
 
 
 
-
-
-/* ---------- Mobile ---------- */
-
-
-@media(max-width:500px) {
+@media(max-width:500px){
 
 
     .auth-card {
@@ -682,26 +459,13 @@ button:active {
 
         padding:30px 22px;
 
-
     }
 
 
 
     .logo {
 
-
         font-size:28px;
-
-
-    }
-
-
-
-    .notification {
-
-
-        width:90vw;
-
 
     }
 
