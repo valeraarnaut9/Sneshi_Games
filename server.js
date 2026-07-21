@@ -392,9 +392,8 @@ console.log("SIGNIN GET");
 
     }
 
-
+console.log("notification null");
     res.render("signin", {
-        console.log("notification null");
 
     notification: null
 
