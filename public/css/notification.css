@@ -1,12 +1,9 @@
 * {
-
     font-family:"Inter", sans-serif;
-
 }
 
 
 /* ---------- Notification ---------- */
-
 
 .notification {
 
@@ -24,20 +21,19 @@
     max-width:90vw;
 
 
-    background:rgba(127,29,29,0.45);
+    background:rgba(127,29,29,0.55);
 
     backdrop-filter:blur(18px);
-
     -webkit-backdrop-filter:blur(18px);
 
 
     border:1px solid rgba(248,113,113,0.35);
 
 
-    border-radius:20px;
+    border-radius:18px;
 
 
-    padding:16px 16px 19px 18px;
+    padding:16px;
 
 
     display:flex;
@@ -48,8 +44,7 @@
 
 
     box-shadow:
-
-    0 10px 35px rgba(0,0,0,.5);
+    0 10px 35px rgba(0,0,0,.45);
 
 
     overflow:hidden;
@@ -60,32 +55,28 @@
 
     animation:notificationShow .3s ease;
 
+
 }
 
 
 
 
-/* ---------- Левая красная линия ---------- */
-
+/* Красная линия слева */
 
 .notification::before {
 
     content:"";
 
-
     position:absolute;
-
 
     left:0;
 
     top:0;
 
-
     width:4px;
 
     height:100%;
 
-
     background:#ef4444;
 
 }
@@ -93,45 +84,32 @@
 
 
 
-
-/* ---------- Таймер ---------- */
-
+/* Таймер снизу */
 
 .notification::after {
 
-
     content:"";
-
 
     position:absolute;
 
-
     bottom:0;
-
 
     left:0;
 
-
     height:3px;
-
-
-    background:#ef4444;
-
 
     width:100%;
 
+    background:#ef4444;
 
     animation:notificationTimer 5s linear;
-
 
 }
 
 
 
 
-
-/* ---------- Icon ---------- */
-
+/* Иконка */
 
 .notification-icon {
 
@@ -144,7 +122,7 @@
     border-radius:12px;
 
 
-    background:rgba(239,68,68,0.2);
+    background:rgba(239,68,68,.2);
 
 
     color:#f87171;
@@ -152,15 +130,12 @@
 
     display:flex;
 
-
     justify-content:center;
-
 
     align-items:center;
 
 
     font-size:22px;
-
 
     font-weight:700;
 
@@ -171,71 +146,45 @@
 
 
 
-
-
-/* ---------- Content ---------- */
-
+/* Контент */
 
 .notification-content {
-
 
     display:flex;
 
     flex-direction:column;
 
-
 }
-
-
 
 
 
 .notification-title {
 
-
     font-size:17px;
-
 
     font-weight:700;
 
-
     color:white;
 
-
 }
-
-
 
 
 
 .notification-text {
 
-
     margin-top:3px;
-
 
     color:#fecaca;
 
-
     font-size:14px;
-
-
-    font-weight:400;
-
-
-    line-height:1.4;
 
 }
 
 
 
-
-
-/* ---------- Hide ---------- */
-
+/* Скрытие */
 
 .notification.hide {
-
 
     animation:notificationHide .3s forwards;
 
@@ -243,40 +192,29 @@
 
 
 
-
-
-/* ---------- Animations ---------- */
-
+/* Анимации */
 
 @keyframes notificationShow {
 
 
     from {
 
-
         opacity:0;
 
-
-        transform:translate(-50%,-25px);
-
+        transform:translate(-50%,-20px);
 
     }
 
 
     to {
 
-
         opacity:1;
 
-
         transform:translate(-50%,0);
-
 
     }
 
 }
-
-
 
 
 
@@ -285,30 +223,22 @@
 
     from {
 
-
         opacity:1;
 
-
         transform:translate(-50%,0);
-
 
     }
 
 
     to {
 
-
         opacity:0;
 
-
-        transform:translate(-50%,-25px);
-
+        transform:translate(-50%,-20px);
 
     }
 
 }
-
-
 
 
 
@@ -317,18 +247,14 @@
 
     from {
 
-
         width:100%;
-
 
     }
 
 
     to {
 
-
         width:0;
-
 
     }
 
