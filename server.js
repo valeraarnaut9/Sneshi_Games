@@ -395,14 +395,11 @@ app.get("/signin", (req, res) => {
 
     res.render("signin", {
 
-        error: null
-
-    });
-
+    notification: null
 
 });
 
-
+});
 
 
 
@@ -421,14 +418,17 @@ app.post("/signin", async (req, res) => {
 
         return res.render("signin", {
 
-            error: "Fill all fields"
+    notification: {
 
-        });
+        title: "Error",
 
+        text: "Fill all fields"
 
     }
 
+});
 
+    }
 
 
 
@@ -449,16 +449,19 @@ app.post("/signin", async (req, res) => {
 
         return res.render("signin", {
 
-            error: "Incorrect username or password"
+    notification: {
 
-        });
+        title: "Error",
 
+        text: "Incorrect username or password"
 
     }
 
+           
 
+});
 
-
+    }
 
     const passwordCorrect =
         await bcrypt.compare(
@@ -475,15 +478,17 @@ app.post("/signin", async (req, res) => {
 
         return res.render("signin", {
 
-            error: "Incorrect username or password"
+    notification: {
 
-        });
+        title: "Error",
 
+        text: "Incorrect username or password"
 
     }
 
-
-
+});
+        
+    }
 
 
     const token = uuidv4();
@@ -566,13 +571,11 @@ app.get("/signup", (req, res) => {
 
     res.render("signup", {
 
-        error: null
-
-    });
-
+    notification: null
 
 });
 
+});
 
 
 
@@ -595,10 +598,15 @@ if(!validateUsername(username)){
 
     return res.render("signup",{
 
-        error:
-        "Username must contain 5-15 characters, only latin letters, numbers and _, with at least 3 letters."
+    notification:{
 
-    });
+        title:"Error",
+
+        text:"Username must contain 5-15 characters, only latin letters, numbers and _, with at least 3 letters."
+
+    }
+    
+});
 
 }
 
@@ -608,10 +616,15 @@ if(!validatePassword(password)){
 
     return res.render("signup",{
 
-        error:
-        "Password must contain 8-25 characters, at least 4 numbers and cannot be only numbers."
+    notification:{
 
-    });
+        title:"Error",
+
+        text:"Password must contain 8-25 characters, at least 4 numbers and cannot be only numbers."
+
+    }
+
+});
 
 }
 
@@ -632,10 +645,15 @@ if(!validatePassword(password)){
 
         return res.render("signup", {
 
-    error: "Username already exists"
+    notification:{
+
+        title:"Error",
+
+        text:"Username already exists"
+
+    }
 
 });
-
 
     }
 
