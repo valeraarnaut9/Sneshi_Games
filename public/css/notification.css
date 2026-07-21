@@ -3,8 +3,6 @@
 }
 
 
-/* ---------- Notification ---------- */
-
 .notification {
 
     position:fixed;
@@ -21,7 +19,7 @@
     max-width:90vw;
 
 
-    background:rgba(127,29,29,0.55);
+    background:rgba(127,29,29,0.45);
 
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
@@ -30,7 +28,7 @@
     border:1px solid rgba(248,113,113,0.35);
 
 
-    border-radius:18px;
+    border-radius:16px;
 
 
     padding:16px;
@@ -44,7 +42,7 @@
 
 
     box-shadow:
-    0 10px 35px rgba(0,0,0,.45);
+    0 10px 35px rgba(0,0,0,.5);
 
 
     overflow:hidden;
@@ -55,13 +53,11 @@
 
     animation:notificationShow .3s ease;
 
-
 }
 
 
 
-
-/* Красная линия слева */
+/* левая красная часть */
 
 .notification::before {
 
@@ -73,9 +69,11 @@
 
     top:0;
 
+    bottom:0;
+
+
     width:4px;
 
-    height:100%;
 
     background:#ef4444;
 
@@ -84,7 +82,7 @@
 
 
 
-/* Таймер снизу */
+/* нижняя линия */
 
 .notification::after {
 
@@ -92,15 +90,20 @@
 
     position:absolute;
 
+
+    left:4px;
+
     bottom:0;
 
-    left:0;
 
     height:3px;
 
-    width:100%;
+
+    width:calc(100% - 4px);
+
 
     background:#ef4444;
+
 
     animation:notificationTimer 5s linear;
 
@@ -109,10 +112,8 @@
 
 
 
-/* Иконка */
 
 .notification-icon {
-
 
     width:42px;
 
@@ -139,14 +140,12 @@
 
     font-weight:700;
 
-
     flex-shrink:0;
 
 }
 
 
 
-/* Контент */
 
 .notification-content {
 
@@ -182,7 +181,7 @@
 
 
 
-/* Скрытие */
+
 
 .notification.hide {
 
@@ -192,10 +191,9 @@
 
 
 
-/* Анимации */
+
 
 @keyframes notificationShow {
-
 
     from {
 
@@ -204,7 +202,6 @@
         transform:translate(-50%,-20px);
 
     }
-
 
     to {
 
@@ -215,12 +212,13 @@
     }
 
 }
+
+
 
 
 
 @keyframes notificationHide {
 
-
     from {
 
         opacity:1;
@@ -228,7 +226,6 @@
         transform:translate(-50%,0);
 
     }
-
 
     to {
 
@@ -242,15 +239,15 @@
 
 
 
-@keyframes notificationTimer {
 
+
+@keyframes notificationTimer {
 
     from {
 
-        width:100%;
+        width:calc(100% - 4px);
 
     }
-
 
     to {
 
