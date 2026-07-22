@@ -880,6 +880,11 @@ res.render("profile",{
 
 app.post("/api/profile/edit", upload.single("avatar"), async(req,res)=>{
 
+    const {
+    display_name,
+    bio
+} = req.body;
+
     if(!req.user){
 
         return res
