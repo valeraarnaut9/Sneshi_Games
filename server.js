@@ -954,9 +954,6 @@ let avatarChanged = false;
 
     }
 
-    
-console.log("BODY:", req.body);
-console.log("FILE:", req.file);
 
     if(req.file){
 
