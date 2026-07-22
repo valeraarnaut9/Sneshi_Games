@@ -880,11 +880,7 @@ res.render("profile",{
 
 app.post("/api/profile/edit", upload.single("avatar"), async(req,res)=>{
 
-    const {
-    display_name,
-    bio
-} = req.body;
-
+    
     if(!req.user){
 
         return res
@@ -920,7 +916,7 @@ app.post("/api/profile/edit", upload.single("avatar"), async(req,res)=>{
     (bio || "").trim();
 
 
-
+let avatarChanged = false;
 
     if(
 
@@ -959,7 +955,70 @@ app.post("/api/profile/edit", upload.single("avatar"), async(req,res)=>{
 
     }
 
+    
 
+if(req.file){
+
+
+    const fileName =
+    `avatar_${req.user.userid}.webp`;
+
+
+
+    const buffer =
+    await sharp(req.file.buffer)
+
+    .resize(
+        512,
+        512,
+        {
+            fit:"cover"
+        }
+    )
+
+    .webp({
+        quality:90
+    })
+
+    .toBuffer();
+
+
+
+    const { error } =
+    await supabase.storage
+    .from("avatars")
+    .upload(
+
+        `users-avatars/${fileName}`,
+
+        buffer,
+
+        {
+            contentType:"image/webp",
+            upsert:true
+        }
+
+    );
+
+
+
+    if(error){
+
+        return res.json({
+
+            success:false,
+
+            message:"Avatar upload error"
+
+        });
+
+    }
+
+
+    avatarChanged = true;
+
+
+}
 
 
     const { error } =
