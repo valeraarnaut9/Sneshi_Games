@@ -28,35 +28,23 @@ body {
 
 body {
 
-    min-height: 100vh;
-
+    min-height:100vh;
 
     display:flex;
-
-
     justify-content:center;
-
-
     align-items:flex-start;
-
 
     padding:100px 0 40px;
 
-
-    background:#0f172a;
-
+    background:#0b1220;
 
     position:relative;
 
-
     overflow:hidden;
-
 
     isolation:isolate;
 
-
-    font-family: "Inter", sans-serif;
-
+    font-family:"Inter", sans-serif;
 
     color:white;
 
