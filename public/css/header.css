@@ -174,7 +174,7 @@ border-bottom:1px solid rgba(96,165,250,0.16);
     width:42px;
     height:42px;
 
-    background:rgba(255,255,255,0.04);
+    background:#191A1F;
 
     border:none;
 
@@ -184,16 +184,17 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
     display:flex;
 
-    flex-direction:column; /* вот это нужно */
+    flex-direction:column;
 
     justify-content:center;
     align-items:center;
 
-    gap:5px; /* расстояние между полосками */
+    gap:5px;
 
     transition:.25s;
 
 }
+
 .menu-button:hover {
 
     background:rgba(255,255,255,0.08);
