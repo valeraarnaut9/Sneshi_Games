@@ -85,7 +85,7 @@ if(user){
 
 
     const avatarPath =
-    `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${user.userid}.webp`;
+`https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${user.userid}.webp?v=${Date.now()}`;
 
 
 
