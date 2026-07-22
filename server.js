@@ -839,8 +839,7 @@ app.get("/users/:userid", async (req,res)=>{
 
 
     const avatarPath =
-    `https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${userid}.webp`;
-
+`https://guidsuqitwysbgoevmin.supabase.co/storage/v1/object/public/avatars/users-avatars/avatar_${userid}.webp?v=${Date.now()}`;
 
 
     const defaultAvatar =
