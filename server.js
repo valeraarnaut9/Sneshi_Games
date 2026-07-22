@@ -998,7 +998,6 @@ await supabase.storage
 
 );
 
-console.log(result);
 
 if(result.error){
 
