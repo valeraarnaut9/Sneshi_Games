@@ -324,3 +324,56 @@
     font-family:"Inter", sans-serif;
 
 }
+
+.button-loader {
+
+    width:18px;
+    height:18px;
+
+    border:3px solid rgba(255,255,255,0.35);
+
+    border-top-color:white;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+    display:none;
+
+}
+
+
+.confirm-profile-button.loading {
+
+    background:#4b5563;
+
+    cursor:not-allowed;
+
+}
+
+
+.confirm-profile-button.loading .button-text {
+
+    display:none;
+
+}
+
+
+.confirm-profile-button.loading .button-loader {
+
+    display:block;
+
+}
+
+
+@keyframes spin {
+
+    from {
+        transform:rotate(0deg);
+    }
+
+    to {
+        transform:rotate(360deg);
+    }
+
+}
