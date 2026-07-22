@@ -401,27 +401,34 @@
 
 }
 
-.avatar-edit-card{
+.avatar-upload-block{
 
     display:flex;
+
     gap:25px;
+
     align-items:center;
 
 }
+
 
 
 .avatar-preview-side{
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
 
 }
 
 
+
 .avatar-preview-side img{
 
     width:120px;
+
     height:120px;
 
     border-radius:50%;
@@ -439,6 +446,7 @@
     padding:10px 20px;
 
     border:none;
+
     border-radius:8px;
 
     cursor:pointer;
@@ -447,9 +455,35 @@
 
 
 
-.avatar-warning{
+.avatar-hint{
 
     color:#888;
+
+    font-size:12px;
+
+    margin-top:8px;
+
+}
+
+
+
+.avatar-upload-right{
+
+    align-self:flex-start;
+
+}
+
+
+
+.avatar-upload-right h3{
+
+    margin:0;
+
+    font-size:18px;
+
+    color:white;
+
+}
 
     font-size:12px;
 
