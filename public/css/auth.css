@@ -21,7 +21,7 @@ body {
 
 body {
 
-    background:#0f172a;
+    background:#121214;
 
     font-family: "Inter", sans-serif;
 
@@ -51,25 +51,22 @@ body::before {
     position:fixed;
 
     width:500px;
-
     height:500px;
 
     background:#2563eb;
 
     border-radius:50%;
 
-    filter:blur(150px);
+    filter:blur(160px);
 
-    opacity:.18;
+    opacity:.10;
 
     top:-150px;
-
     left:-150px;
 
     z-index:-1;
 
 }
-
 
 
 body::after {
@@ -79,19 +76,17 @@ body::after {
     position:fixed;
 
     width:450px;
-
     height:450px;
 
-    background:#7c3aed;
+    background:#6366f1;
 
     border-radius:50%;
 
-    filter:blur(150px);
+    filter:blur(160px);
 
-    opacity:.15;
+    opacity:.08;
 
     bottom:-150px;
-
     right:-120px;
 
     z-index:-1;
@@ -100,29 +95,23 @@ body::after {
 
 
 
-
 /* ---------- Главная карточка ---------- */
 
 
 .auth-card {
 
-    width:420px;
-
-    max-width:95vw;
-
-    background:#172b4d;
+    background:#191A1F;
 
     border-radius:18px;
 
     padding:40px;
 
-    border:1px solid #2d4f73;
+    border:1px solid rgba(148,163,184,0.14);
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,.4);
+    0 10px 30px rgba(0,0,0,.45);
 
 }
-
 
 
 
@@ -189,9 +178,9 @@ input {
 
     height:46px;
 
-    border:2px solid #1e3a5f;
+    border:1px solid #363A44;
 
-    background:#101d35;
+background:#15171C;
 
     color:white;
 
@@ -209,7 +198,7 @@ input {
 
 input::placeholder {
 
-    color:#94a3b8;
+    color:#7f8796;
 
 }
 
@@ -217,7 +206,8 @@ input:focus {
 
     border-color:#2563eb;
 
-    box-shadow:0 0 8px rgba(37,99,235,0.35);
+    box-shadow:
+    0 0 8px rgba(37,99,235,0.25);
 
 }
 
