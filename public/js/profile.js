@@ -141,8 +141,6 @@ if(confirmButton.disabled){
 }
 
 
-    const confirmButton =
-    document.querySelector(".confirm-profile-button");
 
 
 
