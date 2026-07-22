@@ -61,7 +61,7 @@ body {
     width:360px;
     max-width:90vw;
 
-    background:#172b4d;
+    background:#191d27;
 
     border-radius:18px;
 
@@ -69,10 +69,10 @@ body {
 
     text-align:center;
 
-    border:1px solid #2d4f73;
+    border:1px solid rgba(90,110,140,0.35);
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,0.4);
+    0 10px 30px rgba(0,0,0,0.45);
 
 }
 
