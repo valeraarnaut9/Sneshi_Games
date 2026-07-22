@@ -10,6 +10,8 @@
     "ejs": "^3.1.10",
     "uuid": "^11.0.0",
     "bcrypt": "^5.1.1", 
-    "cookie-parser": "^1.4.7"
+    "cookie-parser": "^1.4.7", 
+    "multer": "^2.0.0",
+"sharp": "^0.34.0"
   }
 }
