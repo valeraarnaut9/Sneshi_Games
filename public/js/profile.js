@@ -1,6 +1,51 @@
 const avatarInput =
 document.getElementById("avatarInput");
 
+const chooseImageButton =
+document.getElementById("chooseImageButton");
+
+
+const avatarPreview =
+document.getElementById("avatarPreview");
+
+
+
+if(chooseImageButton){
+
+    chooseImageButton.onclick = ()=>{
+
+        avatarInput.click();
+
+    };
+
+}
+
+
+
+if(avatarInput && avatarPreview){
+
+    avatarInput.addEventListener(
+        "change",
+        ()=>{
+
+
+            const file =
+            avatarInput.files[0];
+
+
+            if(file){
+
+                avatarPreview.src =
+                URL.createObjectURL(file);
+
+            }
+
+
+        }
+    );
+
+}
+
 const openButton =
 document.getElementById("openEditProfile");
 
