@@ -41,6 +41,8 @@ if(closeButton){
 
 
 
+
+
 const form =
 document.getElementById("editProfileForm");
 
@@ -53,6 +55,23 @@ form.addEventListener("submit", async(e)=>{
 
 
     e.preventDefault();
+
+
+
+    const confirmButton =
+    document.querySelector(".confirm-profile-button");
+
+
+
+    if(confirmButton){
+
+        confirmButton.classList.add("loading");
+
+        confirmButton.disabled = true;
+
+    }
+
+
 
 
 
@@ -104,17 +123,27 @@ form.addEventListener("submit", async(e)=>{
 
 
 
-if(data.success){
+    if(data.success){
 
 
-    overlay.classList.remove("show");
+        overlay.classList.remove("show");
 
 
-    location.reload();
+        location.reload();
 
 
-}
+    }
+
     else{
+
+
+        if(confirmButton){
+
+            confirmButton.classList.remove("loading");
+
+            confirmButton.disabled = false;
+
+        }
 
 
         alert(data.message);
