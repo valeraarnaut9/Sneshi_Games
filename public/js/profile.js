@@ -1,3 +1,6 @@
+const avatarInput =
+document.getElementById("avatarInput");
+
 const openButton =
 document.getElementById("openEditProfile");
 
@@ -151,33 +154,43 @@ if(confirmButton.disabled){
     document.getElementById("bioInput").value;
 
 
+const formData =
+new FormData();
 
+
+formData.append(
+    "display_name",
+    display_name
+);
+
+
+formData.append(
+    "bio",
+    bio
+);
+
+
+if(avatarInput && avatarInput.files[0]){
+
+    formData.append(
+        "avatar",
+        avatarInput.files[0]
+    );
+
+}
 
 
     const response =
     await fetch(
-        "/api/profile/edit",
-        {
+    "/api/profile/edit",
+    {
 
-            method:"POST",
+        method:"POST",
 
-            headers:{
+        body:formData
 
-                "Content-Type":
-                "application/json"
-
-            },
-
-            body:JSON.stringify({
-
-                display_name,
-
-                bio
-
-            })
-
-        }
-    );
+    }
+);
 
 
 
