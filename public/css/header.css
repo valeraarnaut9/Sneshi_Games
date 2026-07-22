@@ -184,14 +184,16 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
     display:flex;
 
+    flex-direction:column; /* вот это нужно */
+
     justify-content:center;
     align-items:center;
+
+    gap:5px; /* расстояние между полосками */
 
     transition:.25s;
 
 }
-
-
 .menu-button:hover {
 
     background:rgba(255,255,255,0.08);
