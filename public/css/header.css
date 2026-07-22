@@ -240,9 +240,9 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
     position:fixed;
 
-    top:65px; /* ровно под header */
+    top:75px; /* было 65px, добавили 10px воздуха */
 
-    right:25px; /* отступ справа как у header */
+    right:15px; /* ближе к правому краю */
 
     width:160px;
 
