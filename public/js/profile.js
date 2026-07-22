@@ -76,9 +76,10 @@ function checkChanges(){
 
 
     if(
-        displayInput.value === oldDisplayName &&
-        bioInput.value === oldBio
-    ){
+    displayInput.value === oldDisplayName &&
+    bioInput.value === oldBio &&
+    avatarInput.files.length === 0
+){
 
         confirmButton.classList.add("disabled");
 
