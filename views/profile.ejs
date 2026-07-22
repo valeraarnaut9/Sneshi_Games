@@ -127,44 +127,93 @@ id="profileEditOverlay">
 
 
 
-            <label>
-                Display Name
-            </label>
+            <div class="avatar-upload-block">
+
+
+    <div class="avatar-preview-side">
+
+
+        <img
+        id="avatarPreview"
+        src="<%= avatar %>"
+        onerror="this.src='<%= defaultAvatar %>'"
+        >
+
+
+        <button
+        type="button"
+        class="choose-image-button"
+        onclick="document.getElementById('avatarInput').click()">
+
+            Choose Image
+
+        </button>
+
+
+        <p class="avatar-hint">
+            *only png, jpg, jpeg (max 1MB)*
+        </p>
+
+
+        <input
+        id="avatarInput"
+        type="file"
+        accept=".png,.jpg,.jpeg"
+        hidden
+        >
+
+
+    </div>
 
 
 
-            <input
-            id="displayNameInput"
-            type="text"
-            maxlength="25"
-            value="<%= display_name %>"
-            >
+    <div class="avatar-upload-right">
+
+
+        <h3>
+            Upload Avatar
+        </h3>
+
+
+        <p>
+            Change your profile picture
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+
 
 <label>
-    Profile Avatar
+    Display Name
 </label>
 
+
 <input
-id="avatarInput"
-type="file"
-accept="image/*"
+id="displayNameInput"
+type="text"
+maxlength="25"
+value="<%= display_name %>"
 >
 
 
 
 
 
-            <label>
-                Bio
-            </label>
+<label>
+    Bio
+</label>
 
 
-
-            <textarea
-            id="bioInput"
-            maxlength="250"
-            ><%= bio %></textarea>
-
+<textarea
+id="bioInput"
+maxlength="250"
+><%= bio %></textarea>
 
 
 
