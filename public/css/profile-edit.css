@@ -178,52 +178,37 @@
 
 
 #editProfileForm input,
-
 #editProfileForm textarea {
 
+    width:100%;
 
-    width: 100%;
+    box-sizing:border-box;
 
+    padding:11px;
 
-    box-sizing: border-box;
+    border-radius:9px;
 
+    border:1px solid #636772;
 
-    padding: 11px;
+    background:#1d1f24;
 
+    color:white;
 
-    border-radius: 9px;
+    font-size:15px;
 
+    outline:none;
 
-    border: 1px solid #334155;
-
-
-    background: #1e293b;
-
-
-    color: white;
-
-
-    font-size: 15px;
-
-
-    outline: none;
-
-
-    transition: 0.2s;
+    transition:.2s;
 
 }
-
 
 
 #editProfileForm input:focus,
-
 #editProfileForm textarea:focus {
 
-
-    border-color: #2563eb;
+    border-color:#2563eb;
 
 }
-
 
 
 
