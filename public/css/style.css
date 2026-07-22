@@ -63,14 +63,15 @@ body {
 
     max-width:90vw;
 
-    background:#172033;
+    background:#1b2230;
     border-radius:18px;
 
     padding:40px 30px;
 
     text-align:center;
 
-    border:1px solid rgba(96,165,250,0.18);
+    border-bottom:1px solid rgba(148,163,184,0.12);
+
 
 
 
