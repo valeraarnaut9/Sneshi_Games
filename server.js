@@ -986,35 +986,35 @@ console.log("FILE:", req.file);
 
 
 
-    const { error } =
-    await supabase.storage
-    .from("avatars")
-    .upload(
+const result =
+await supabase.storage
+.from("avatars")
+.upload(
 
-        `users-avatars/${fileName}`,
+    `users-avatars/${fileName}`,
 
-        buffer,
+    buffer,
 
-        {
-            contentType:"image/webp",
-            upsert:true
-        }
-
-    );
-
-
-
-    if(error){
-
-        return res.json({
-
-            success:false,
-
-            message:"Avatar upload error"
-
-        });
-
+    {
+        contentType:"image/webp",
+        upsert:true
     }
+
+);
+
+console.log(result);
+
+if(result.error){
+
+    return res.json({
+
+        success:false,
+
+        message:"Avatar upload error"
+
+    });
+
+}
 
 
     avatarChanged = true;
