@@ -174,39 +174,34 @@ border-bottom:1px solid rgba(96,165,250,0.16);
     width:42px;
     height:42px;
 
-    background:#1b212b;
+    background:rgba(255,255,255,0.04);
 
-    border:1px solid #3b4a5d;
+    border:none;
 
     border-radius:10px;
 
     cursor:pointer;
 
     display:flex;
-    flex-direction:column;
+
     justify-content:center;
     align-items:center;
 
-    gap:5px;
-
-    transition:.2s;
+    transition:.25s;
 
 }
 
 
 .menu-button:hover {
 
-    background:#234b73;
+    background:rgba(255,255,255,0.08);
 
 }
 
 
-
 .menu-button.active {
 
-    background:#2b3442;
-
-    border-color:#5b6d84;
+    background:rgba(37,99,235,0.18);
 
 }
 
