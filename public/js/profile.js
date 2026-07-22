@@ -47,6 +47,83 @@ const form =
 document.getElementById("editProfileForm");
 
 
+const displayInput =
+document.getElementById("displayNameInput");
+
+
+const bioInput =
+document.getElementById("bioInput");
+
+
+const confirmButton =
+document.querySelector(".confirm-profile-button");
+
+
+let oldDisplayName = "";
+let oldBio = "";
+
+
+
+if(openButton){
+
+    openButton.onclick = ()=>{
+
+        overlay.classList.add("show");
+
+
+        oldDisplayName = displayInput.value;
+
+        oldBio = bioInput.value;
+
+
+        checkChanges();
+
+    };
+
+}
+
+
+function checkChanges(){
+
+
+    if(
+        displayInput.value === oldDisplayName &&
+        bioInput.value === oldBio
+    ){
+
+        confirmButton.classList.add("disabled");
+
+        confirmButton.disabled = true;
+
+    }
+
+    else{
+
+        confirmButton.classList.remove("disabled");
+
+        confirmButton.disabled = false;
+
+    }
+
+
+}
+
+if(displayInput && bioInput){
+
+
+    displayInput.addEventListener(
+        "input",
+        checkChanges
+    );
+
+
+    bioInput.addEventListener(
+        "input",
+        checkChanges
+    );
+
+
+}
 
 if(form){
 
@@ -56,6 +133,12 @@ form.addEventListener("submit", async(e)=>{
 
     e.preventDefault();
 
+    
+if(confirmButton.disabled){
+
+    return;
+
+}
 
 
     const confirmButton =
