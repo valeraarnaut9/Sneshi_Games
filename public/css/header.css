@@ -203,7 +203,7 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
 .menu-button.active {
 
-    background:rgba(37,99,235,0.18);
+    background:#22252c;
 
 }
 
@@ -240,15 +240,15 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
     position:fixed;
 
-    top:75px; /* было 65px, добавили 10px воздуха */
+    right:15px;
 
-    right:15px; /* ближе к правому краю */
+    top:75px;
 
     width:160px;
 
-    background:#1b212b;
+    background:#191A1F;
 
-    border:1px solid rgba(96,165,250,0.18);
+    border:1px solid rgba(148,163,184,0.12);
 
     border-radius:14px;
 
@@ -256,7 +256,8 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
     display:none;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.45);
 
 }
 
