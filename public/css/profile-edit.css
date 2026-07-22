@@ -359,12 +359,22 @@
 }
 
 
+.confirm-profile-button.loading {
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
 .confirm-profile-button.loading .button-loader {
 
     display:block;
 
 }
-
 
 @keyframes spin {
 
