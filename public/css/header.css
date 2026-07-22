@@ -174,7 +174,7 @@ border-bottom:1px solid rgba(96,165,250,0.16);
     width:42px;
     height:42px;
 
-    background:#242832;
+    background:rgba(255,255,255,0.03);
 
     border:none;
 
@@ -198,14 +198,14 @@ border-bottom:1px solid rgba(96,165,250,0.16);
 
 .menu-button:hover {
 
-    background:#2b303b;
+    background:rgba(255,255,255,0.07);
 
 }
 
 
 .menu-button.active {
 
-    background:#303746;
+    background:#24272d;
 
 }
 
