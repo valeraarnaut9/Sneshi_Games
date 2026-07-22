@@ -4,12 +4,25 @@ const { createClient } = require("@supabase/supabase-js");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
+const multer = require("multer");
+const sharp = require("sharp");
 
 const auth = require("./middleware/auth");
 
 
 const app = express();
 
+
+const upload = multer({
+
+    storage:
+    multer.memoryStorage(),
+
+    limits:{
+        fileSize:5 * 1024 * 1024
+    }
+
+});
 
 // ---------- EJS ----------
 
@@ -865,8 +878,7 @@ res.render("profile",{
 
 // ---------- Edit Profile ----------
 
-app.post("/api/profile/edit", async(req,res)=>{
-
+app.post("/api/profile/edit", upload.single("avatar"), async(req,res)=>{
 
     if(!req.user){
 
