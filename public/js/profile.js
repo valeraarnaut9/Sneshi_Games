@@ -11,20 +11,6 @@ document.getElementById("profileEditOverlay");
 
 
 
-if(openButton){
-
-
-    openButton.onclick = ()=>{
-
-        overlay.classList.add("show");
-
-    };
-
-
-}
-
-
-
 
 
 if(closeButton){
