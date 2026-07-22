@@ -115,6 +115,15 @@ if(displayInput && bioInput){
 
 }
 
+if(avatarInput){
+
+    avatarInput.addEventListener(
+        "change",
+        checkChanges
+    );
+
+}
+
 if(form){
 
 
