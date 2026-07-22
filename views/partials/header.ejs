@@ -17,11 +17,15 @@
         <% if(user){ %>
 
 
-            <img
-            class="header-avatar"
-            src="<%= user.avatar %>"
-            onerror="this.src='<%= user.defaultAvatar %>'"
-            >
+            <a href="/users/<%= user.userid %>">
+
+    <img
+    class="header-avatar"
+    src="<%= user.avatar %>"
+    onerror="this.src='<%= user.defaultAvatar %>'"
+    >
+
+</a>
 
 
 
