@@ -400,3 +400,74 @@
     opacity:0.7;
 
 }
+
+.avatar-edit-card{
+
+    display:flex;
+    gap:25px;
+    align-items:center;
+
+}
+
+
+.avatar-preview-side{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+
+
+.avatar-preview-side img{
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+
+
+.choose-image-button{
+
+    margin-top:12px;
+
+    padding:10px 20px;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+.avatar-warning{
+
+    color:#888;
+
+    font-size:12px;
+
+    margin-top:8px;
+
+}
+
+
+
+.avatar-edit-right h3{
+
+    margin:0;
+
+}
+
+
+.avatar-edit-right p{
+
+    color:#888;
+
+}
