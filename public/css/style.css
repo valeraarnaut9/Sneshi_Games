@@ -426,48 +426,39 @@ body::after {
 
 .verified-badge {
 
-    display: inline-flex;
+    display:inline-flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:center;
 
-    width: 22px;
-    height: 22px;
+    width:22px;
+    height:22px;
 
-    margin-left: 6px;
+    margin-left:6px;
 
-    background: #2563eb;
+    position:relative;
 
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    border-radius: 50%;
-
-    position: relative;
+    z-index:1;
 
 }
 
 
-/* эффект волнистого края */
+/* синяя волнистая форма */
 
 .verified-badge::before {
 
-    content: "";
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    inset: -3px;
+    inset:0;
 
-    border-radius: 50%;
+    background:#2563eb;
 
-    background: #2563eb;
+    z-index:-1;
 
-    z-index: -1;
 
-    clip-path: polygon(
+    clip-path:polygon(
         50% 0%,
         61% 8%,
         75% 5%,
@@ -493,5 +484,33 @@ body::after {
         25% 5%,
         39% 8%
     );
+
+}
+
+
+
+/* SVG галочка */
+
+.verified-badge svg {
+
+    width:13px;
+
+    height:13px;
+
+}
+
+
+
+.verified-check {
+
+    fill:none;
+
+    stroke:white;
+
+    stroke-width:3;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
 
 }
