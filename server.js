@@ -446,7 +446,7 @@ app.post("/signin", async (req, res) => {
     const { data: user, error } = await supabase
         .from("users")
         .select(
-    "userid, username, display_name, bio, verified"
+    "userid, username, password_hash, display_name, bio, verified"
 )
         .eq("username", username)
         .single();
