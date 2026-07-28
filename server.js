@@ -874,7 +874,7 @@ res.render("profile",{
 });
 
 
-
+});
 
 
 // ---------- Edit Profile ----------
