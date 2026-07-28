@@ -255,7 +255,79 @@ body {
 }
 
 
+/* ---------- Verified Badge ---------- */
 
+.verified-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    margin-left: 6px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    border-radius: 50%;
+
+    position: relative;
+
+}
+
+
+/* эффект волнистого края */
+
+.verified-badge::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -3px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    z-index: -1;
+
+    clip-path: polygon(
+        50% 0%,
+        61% 8%,
+        75% 5%,
+        82% 18%,
+        96% 25%,
+        91% 40%,
+        100% 50%,
+        91% 62%,
+        96% 76%,
+        82% 82%,
+        75% 95%,
+        61% 92%,
+        50% 100%,
+        39% 92%,
+        25% 95%,
+        18% 82%,
+        4% 75%,
+        9% 60%,
+        0% 50%,
+        9% 38%,
+        4% 25%,
+        18% 18%,
+        25% 5%,
+        39% 8%
+    );
+
+}
 
 
 
