@@ -817,8 +817,8 @@ app.get("/users/:userid", async (req,res)=>{
         await supabase
         .from("users")
         .select(
-            "userid, username, display_name, bio"
-        )
+    "userid, username, display_name, bio, verified"
+)
         .eq("userid", userid)
         .single();
 
