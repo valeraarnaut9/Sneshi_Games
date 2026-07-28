@@ -41,10 +41,21 @@
 
 
 
-    <h1 class="display-name">
-        <%= display_name %>
-    </h1>
+ <h1 class="display-name">
 
+    <%= display_name %>
+
+
+    <% if(data.verified){ %>
+
+        <span class="verified-badge">
+            ✓
+        </span>
+
+    <% } %>
+
+
+</h1>
 
 
     <p class="username">
