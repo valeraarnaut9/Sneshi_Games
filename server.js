@@ -446,8 +446,8 @@ app.post("/signin", async (req, res) => {
     const { data: user, error } = await supabase
         .from("users")
         .select(
-            "userid, username, password_hash"
-        )
+    "userid, username, display_name, bio, verified"
+)
         .eq("username", username)
         .single();
 
@@ -857,6 +857,8 @@ res.render("profile",{
 
     bio:data.bio,
 
+    verified:data.verified,
+
     userid:data.userid,
 
     avatar:avatarPath,
@@ -867,7 +869,7 @@ res.render("profile",{
         req.user &&
         req.user.userid == data.userid,
 
-    currentUser: req.user
+    currentUser:req.user
 
 });
 
